@@ -1,0 +1,89 @@
+\chapter{Used algorithms and key concepts}
+This section offers basing introduction to multiple state-of-the-art algorithms used in this work. Good understanding of these concepts is crucial for full comprehension of section 3 \todo{ref}. 
+
+\section{SLAM problem definition}
+Successfully solving SLAM problem means to find location of robot in every time step and be able to create map at that time-stamp. In real world we deal with robot's sensors which have always some inherited noise. This means we are not able to fully say exact position of robot. This is main reason why to use probabilistic definition of problem. Robot moves through unknown space along trajectory expressed as variables $ \textbf{x}_{1:T} = \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. While moving robot is taking odometry measurements $ \textbf{u}_{1:T} = \{\textbf{u}_{1},...,\textbf{u}_{T}\}$ and perception of environment $ \textbf{z}_{1:T} = \{\textbf{z}_{1},...,\textbf{z}_{T}\}$ Solving SLAM than means finding out probability of the robot's trajectory $ \textbf{x}_{1:T}$ and a map \textbf{m} of local environment given all the measurements and initial pose $ \textbf{x}_{0}$:
+\begin{equation}
+p(\textbf{x}_{1:T}, \textbf{m}\: |\:  \textbf{z}_{1:T}, \textbf{u}_{1:T}, \textbf{x}_{0})
+\end{equation}
+Odometry is usually acquired by robots wheel encoders or by incremental scan-matching. Odometry is represented in 2D by triple $(x,y,\theta)$ or by three dimensional transformation matrix. Perceptions of environment might come from different sources. In this work we expect distance measurements from laser scanner or kinect sensor. Initial pose can be interpreted as origin of coordinate system for global map. Representation of the map is more described in section \ref{MAP_REPRE}.
+
+\subsection{SLAM categories}
+\newpage
+\subsection{Graph-based SLAM}
+A graph-based SLAM solves SLAM problem by constructing graph representation of the problem. This graph is commonly called a pose graph. Nodes of the graph represent potential poses of robot at certain time stamp $ T $. Therefore, nodes are representing our trajectory $ \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. Nodes also hold state of the current map. Edges in the graph represent possible spatial transformation between nodes. Edge is generated out of noisy sensor data. Therefore, we need to model uncertainty of this movement. It is represented by probability distribution and included in the edge. Generation of constrains is done by algorithm's front-end. It creates them either from odometry $  \textbf{u}_{T} $ or by measurement data  $ \textbf{z}_{T} $ registration. Once the graph is completed ,it is optimized by algorithms back-end. Result of this process is the most likely position of all nodes in the graph.
+
+\subsection {Pose graph creation}
+Loop closure edge generation 
+\newpage
+
+\newpage
+\subsection{Optimization}
+\newpage
+
+
+
+\section{Map representation}
+\label{MAP_REPRE}
+Successful solving SLAM problem should output map of the unknown environment. This map needs to be stored for local path planning and obstacle avoidance. It is also needed for scan registration. Algorithms for avoiding obstacles very often need precise map. Map should keep low memory consumption, because robots very often have limited access to memory. Scan registration algorithms usually might benefit from maps with high precision.
+
+Point-cloud is map representation which stores all measured points. This is very precise representation. All input data is still in its raw form. We are not loosing any information. Scan-matching algorithms e.g. ICP  \todo{citace} ------ is working on top of this datastructure. It is very easy to convert from this model to different type of map if needed. Problematic is memory consumption. If robot runs for long period with higher frequency of data production, it is likely that robot will run out of memory.
+
+Occupancy map is grid based type. It consists of grid with cells. In every cell we have just one value describing probability that this cell is occupied. Value becomes higher with more incoming data measurements. It has constant memory consumption with respect to time of robot's run-time. It is possible to use this representation for map to map registration process. This model is also possible to represent empty spaces (low probability). This feature is used by many path planning and obstacle avoidance algorithms. That is why, occupancy maps are main output format for SLAM algorithms in ROS. It is important to select good resolution of grid. Finer grid offers better detail but higher memory consumption.
+
+Quad-tree is a tree data structure. Each node of the tree has exactly four children. Nodes are decomposing space into sub-areas. Every node has its threshold. When it is reached, cell subdivides into four smaller cells. This process dynamically change resolution of the grid. This way we get higher precision in places where it matters more. It is crucial part of speeding up performance of ICP registration \todo{citace} ----------.
+
+Normal distributions transform (NDT) representation uses grid based datastructure. Each cell has normal distribution parameters calculated based on inserted points. This model offers constant memory consumption over time. In comparison, NDT has better representation of inner points than octree (3D case of quad-tree). This was proven as convenient by \todo{citace}. They have shown that coarser NDT grid can have similar results as finer octree map. NDT grids have their own class of registration whoch will be explained in next sections.     
+\todo{picture of occupancy grid, pointcloud ndt grid}
+\newpage
+
+
+\subsection{NDT grid}
+The normal distributions transform(NDT) grid representation was first time used by \cite{Biber03} in their scan registration process. Central idea was to convert laser scan into grid with cells containing normal distributions. Points in space from laser scanner are first separated into corresponding cells. From points in sigle cell we approximate normal distribution $(\mu_{i},P_{i})$ by calculating mean and covariance:
+\begin{equation}
+\mu_{i} = \dfrac{1}{n}\sum_{k=1}^{n}x_{k}
+\end{equation}  
+\begin{equation}
+P_{i} = \dfrac{1}{n-1}\sum_{k=1}^{n}(x_{k}-\mu_{i})(x_{k}-\mu_{i})^{t}
+\end{equation} 
+NDT grid was than used for registration.Originally proposed grid could be updated with new laser scans only by keeping used points and recalculating all cells again. This has changed with proposed recursive covariance update step by \cite{Saarinen13}. Their update step offers way how to fuse in new measurements. First it calculate normal distributions for added points. In second step, it merges old covariances with new one.
+
+Consider two sets of measurement $\{x_{i}\}^{m}_{i=1}$ and $\{y_{i}\}^{n}_{i=1}$ than formula for mean calculation is in equation \eqref{NDT_mean_RCU}. Recursive update for covariance (RCU) is in equation \eqref{NDT_covar_RCU}
+\begin{equation}
+\label{NDT_mean_RCU}
+\mu_{x\oplus y} =\dfrac{1}{m + n}(\sum_{i =1}^{m}x_{i} + \sum_{i=1}^{n}y_{i}) = \frac{1}{m+n}(m\mu_{x} + n\mu_{y})
+\end{equation} 
+
+\begin{equation}
+S_{x} = \sum_{i=1}^{m}(x_{i} - \mu_{x})(x_{i} - \mu_{x})^{T} \quad 
+S_{y} = \sum_{i=1}^{m}(y_{i} - \mu_{y})(y_{i} - \mu_{y})^{T}
+\end{equation}
+\begin{equation}
+S_{x\oplus y} = S_{x} + S_{y} + \dfrac{mn}{m+n}(\mu_{x} - \mu_{y})(\mu_{x} - \mu_{y})^{T}
+\end{equation}
+\begin{equation}
+\label{NDT_covar_RCU}
+P_{x\oplus y} = \dfrac{1}{m+n -1}S_{x\oplus y}
+\end{equation}
+
+Proof and further explanation for these equations can be found in work of \cite{Saarinen13}.
+
+In addition to fusing in new laser measurements we can also easily generated coarser grid by merging cells from higher resolution grid to grid with lower resolution. This mechanism is useful in path planning where we can plan on coarser grid which could be faster. Also, we can use multi-level scan matching approaches, which will be discussed in next section \ref{Scan_reg}. Small disadvantage of this method is that we need to keep number of points used in every cell. It is worth noting that, this number can potentialy rise into infinity making distribution fusion numerically unstable. This problem will be resolved in next section.     
+\newpage 
+\subsection{NDT-OM extension}
+NDT grids offers good compromise between space and precision, but it lacks information about occupied space and unoccupied space. This is crucial for planning algorithms. This functionality was added to NDT by \cite{Saarinen13} and later improved by same authors in later work \cite{Saarinen213}. Every cell in NDT-OM is represented with parameters $c_{i}=\{\mu_{i}, p_{i}, N_{i},p_{i}\}$, where $\mu_{i}$ and $P_{i}$ are parameters of estimated normal distribution, $N_{i}$ is number of points in cell and $p_{i}$ is probability of the cell being occupied. 
+
+Calculation of occupancy parameter is done by ray-tracing. Consider that we have current map $m_{x}$. We have calculated new NDT map $m_{y}$ from incoming distance measurements. Both maps needs to be in the same coordinate system. Ray-tracing starts at current robot position in map $m_{x}$ and ends in cell of map $m_{x}$, where we will later merge in cell from $m_{y}$. Program visits every cell along the line and updates covariance based on equation \ref{NDT_OM_OCCUP}\todo{ref}. When is ray-tracing over we merge in all cells from $m_{y}$ into $m_{x}$ with RCU update rule.
+\newpage   
+\section{Scan registration}
+\label{Scan_reg}
+Scan registration is the esential part of SLAM front-end.
+ 
+\subsection{Point to distribution NDT registration}
+\newpage
+\subsection{Distribution to distribution NDT registration}
+\newpage
+\subsection{Correlative scan registration}
+\newpage
+\section{NDT graph slam analyses}
+
