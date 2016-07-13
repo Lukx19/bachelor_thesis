@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.13)  13 JUL 2016 23:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.13)  14 JUL 2016 00:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -982,7 +982,8 @@ Package hyperref Info: Option `breaklinks' set `true' on input line 97.
 \c@thm=\count143
 \c@defn=\count144
 ) (./thesis.aux (./title.aux) (./preface.aux) (./chap01.aux)
-(./chap02.aux) (./epilog.aux) (./bibliography.aux))
+(./chap02.aux) (./chap03.aux) (./chap04.aux) (./epilog.aux) (./bibliography.aux
+))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 107.
@@ -1001,8 +1002,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 107.
 LaTeX Font Info:    ... okay on input line 107.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 107.
 LaTeX Font Info:    ... okay on input line 107.
-
-(/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count145
 \scratchdimen=\dimen181
@@ -1057,7 +1057,7 @@ LaTeX Info: Redefining \nameref on input line 107.
  (./title.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
-<../img/logo.pdf, id=111, 371.3875pt x 366.36874pt>
+<../img/logo.pdf, id=175, 371.3875pt x 366.36874pt>
 File: ../img/logo.pdf Graphic file (type pdf)
  <use ../img/logo.pdf>
 Package pdftex.def Info: ../img/logo.pdf used on input line 23.
@@ -1086,18 +1086,18 @@ Package hyperref Info: Option `pageanchor' set `true' on input line 65.
 
 ] [3
 
-]) (./thesis.toc)
+]) (./thesis.toc [1
+
+
+
+])
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
- [1
-
-
-
-]
+ [2]
 \openout2 = `preface.aux'.
 
- (./preface.tex) [2
+ (./preface.tex) [3
 
 
 ]
@@ -1107,11 +1107,11 @@ Package hyperref Info: Option `pageanchor' set `true' on input line 65.
 Chapter 1.
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 2.
-[3
+[4
 
 
 
-] [4] [5]
+] [5] [6]
 Overfull \hbox (3.64139pt too wide) in paragraph at lines 30--30
 [][][][]\OT1/cmr/m/n/12 citace  |
  []
@@ -1251,30 +1251,48 @@ Overfull \hbox (1.68307pt too wide) in paragraph at lines 37--37
 \OT1/cmr/m/n/12 cloud |
  []
 
-[6] [7]
+[7] [8]
 
-LaTeX Warning: Reference `NDT_OM_OCCUP' on page 8 undefined on input line 76.
+LaTeX Warning: Reference `NDT_OM_OCCUP' on page 9 undefined on input line 76.
 
-[8] [9] [10] [11]) [12]
+[9] [10] [11] [12]) [13]
 \openout2 = `chap02.aux'.
 
  (./chap02.tex
 Chapter 2.
-) [13
+[14
+
+
+
+] [15] [16] [17] [18] [19]) [20]
+\openout2 = `chap03.aux'.
+
+ (./chap03.tex
+Chapter 3.
+) [21
+
+
+
+]
+\openout2 = `chap04.aux'.
+
+ (./chap04.tex
+Chapter 4.
+) [22
 
 
 
 ]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [14
+ (./epilog.tex) [23
 
 
 
 ]
 \openout2 = `bibliography.aux'.
 
- (./bibliography.tex (./thesis.bbl)) [15
+ (./bibliography.tex (./thesis.bbl)) [24
 
 
 
@@ -1283,40 +1301,40 @@ Chapter 2.
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
- [16
+ [25
 
 
 ] (./thesis.lot)
 \tf@lot=\write8
 \openout8 = `thesis.lot'.
 
- [17
+ [26
 
-] [18
+] [27
 
-] [19
+] [28
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 148.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 148.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
  (./thesis.aux (./title.aux)
-(./preface.aux) (./chap01.aux) (./chap02.aux) (./epilog.aux)
-(./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 148.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 148.
+(./preface.aux) (./chap01.aux) (./chap02.aux) (./chap03.aux) (./chap04.aux)
+(./epilog.aux) (./bibliography.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 149.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 149.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: F917799EFFBB73AB385AB8F14151ABA0;3895.
+(rerunfilecheck)             Checksum: 30628D3F967BCDD04DC7F81633F991AA;5835.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 148.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 149.
  ) 
 Here is how much of TeX's memory you used:
- 21378 strings out of 493013
- 372574 string characters out of 6133328
- 439151 words of memory out of 5000000
- 24453 multiletter control sequences out of 15000+600000
+ 21435 strings out of 493013
+ 373185 string characters out of 6133328
+ 440030 words of memory out of 5000000
+ 24471 multiletter control sequences out of 15000+600000
  18579 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,9n,78p,968b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1330,10 +1348,10 @@ ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
 /texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on thesis.pdf (23 pages, 287374 bytes).
+Output written on thesis.pdf (32 pages, 292643 bytes).
 PDF statistics:
- 332 PDF objects out of 1000 (max. 8388607)
- 293 compressed objects within 3 object streams
- 67 named destinations out of 1000 (max. 500000)
- 226 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 407 compressed objects within 5 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 354 words of extra memory for PDF output out of 10000 (max. 10000000)
 
