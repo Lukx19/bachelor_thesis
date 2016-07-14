@@ -14,6 +14,7 @@ Odometry is usually acquired by robots wheel encoders or by incremental scan-mat
 A graph-based SLAM solves SLAM problem by constructing graph representation of the problem. This graph is commonly called a pose graph. Nodes of the graph represent potential poses of robot at certain time stamp $ T $. Therefore, nodes are representing our trajectory $ \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. Nodes also hold state of the current map. Edges in the graph represent possible spatial transformation between nodes. Edge is generated out of noisy sensor data. Therefore, we need to model uncertainty of this movement. It is represented by probability distribution and included in the edge. Generation of constrains is done by algorithm's front-end. It creates them either from odometry $  \textbf{u}_{T} $ or by measurement data  $ \textbf{z}_{T} $ registration. Once the graph is completed ,it is optimized by algorithms back-end. Result of this process is the most likely position of all nodes in the graph.
 
 \subsection {Pose graph creation}
+\label{Pose_graph_creation}
 Loop closure edge generation 
 \newpage
 
@@ -39,6 +40,7 @@ Normal distributions transform (NDT) representation uses grid based datastructur
 
 
 \subsection{NDT grid}
+\label{NDT_grid}
 The normal distributions transform(NDT) grid representation was first time used by \cite{Biber03} in their scan registration process. Central idea was to convert laser scan into grid with cells containing normal distributions. Points in space from laser scanner are first separated into corresponding cells. From points in sigle cell we approximate normal distribution $(\mu_{i},P_{i})$ by calculating mean and covariance:
 \begin{equation}
 \mu_{i} = \dfrac{1}{n}\sum_{k=1}^{n}x_{k}
@@ -50,40 +52,129 @@ NDT grid was than used for registration.Originally proposed grid could be update
 
 Consider two sets of measurement $\{x_{i}\}^{m}_{i=1}$ and $\{y_{i}\}^{n}_{i=1}$ than formula for mean calculation is in equation \eqref{NDT_mean_RCU}. Recursive update for covariance (RCU) is in equation \eqref{NDT_covar_RCU}
 \begin{equation}
+T_{x} = \sum_{i =1}^{m}x_{i} \quad
+T_{y} = \sum_{i =1}^{n}y_{i} \quad
+T_{x\oplus y} = T_{x} + T_{y} 
+\end{equation}
+
+\begin{equation}
 \label{NDT_mean_RCU}
-\mu_{x\oplus y} =\dfrac{1}{m + n}(\sum_{i =1}^{m}x_{i} + \sum_{i=1}^{n}y_{i}) = \frac{1}{m+n}(m\mu_{x} + n\mu_{y})
+\mu_{x\oplus y} =\dfrac{1}{m + n}T_{x\oplus y}
 \end{equation} 
 
 \begin{equation}
-S_{x} = \sum_{i=1}^{m}(x_{i} - \mu_{x})(x_{i} - \mu_{x})^{T} \quad 
-S_{y} = \sum_{i=1}^{m}(y_{i} - \mu_{y})(y_{i} - \mu_{y})^{T}
+S_{x} = \sum_{i=1}^{m}(x_{i} - \frac{1}{m}T_{x})(x_{i} - \frac{1}{m}T_{x})^{T} \quad 
+S_{y} = \sum_{i=1}^{n}(y_{i} - \frac{1}{n}T_{y})(y_{i} - \frac{1}{n}T_{y})^{T}
 \end{equation}
 \begin{equation}
-S_{x\oplus y} = S_{x} + S_{y} + \dfrac{mn}{m+n}(\mu_{x} - \mu_{y})(\mu_{x} - \mu_{y})^{T}
+S_{x\oplus y} = S_{x} + S_{y} + \dfrac{m}{n(m+n)}(\frac{n}{m}T_{x} - T_{x\oplus y})(\frac{n}{m}T_{x} - T_{x\oplus y})^{T}
 \end{equation}
 \begin{equation}
 \label{NDT_covar_RCU}
 P_{x\oplus y} = \dfrac{1}{m+n -1}S_{x\oplus y}
 \end{equation}
 
-Proof and further explanation for these equations can be found in work of \cite{Saarinen13}.
+Proof and further explanation for these equations can be found in work of \cite{Saarinen13} and later improved in \cite{Saarinen213}.
 
-In addition to fusing in new laser measurements we can also easily generated coarser grid by merging cells from higher resolution grid to grid with lower resolution. This mechanism is useful in path planning where we can plan on coarser grid which could be faster. Also, we can use multi-level scan matching approaches, which will be discussed in next section \ref{Scan_reg}. Small disadvantage of this method is that we need to keep number of points used in every cell. It is worth noting that, this number can potentialy rise into infinity making distribution fusion numerically unstable. This problem will be resolved in next section.     
-\newpage 
+In addition to fusing in new laser measurements we can also easily generated coarser grid by merging cells from higher resolution grid to grid with lower resolution. This mechanism is useful in path planning where we can plan on coarser grid which could be faster. Also, we can use multi-level scan matching approaches, which will be discussed in next section \ref{Scan_reg}. Small disadvantage of this method is that we need to keep number of points used in every cell.
+
+It is worth noting that in continual integration of scans calculated mean and covariance grow unboundedwith increasing number of points added. This could lead to numerical instabilities. Second problem is that cell's distribution contains measurements from all scans. This is problem in dynamic environment where some objects might disappear. These problems are solved by restricting maximal number of points in cell with parameter M
+\begin{equation}
+N_{x \oplus y} = 
+\begin{cases}
+n+m, & n+m < M \\
+M, & n+m \geq M
+\end{cases} 
+\end{equation}
+Parameter M modifies how fast we let RCU replace old measurements by new one. Small value of M makes adaptation faster and big M keeps weight of older data higher. This cause to have new data making smaller impact on result of process. 
+
 \subsection{NDT-OM extension}
 NDT grids offers good compromise between space and precision, but it lacks information about occupied space and unoccupied space. This is crucial for planning algorithms. This functionality was added to NDT by \cite{Saarinen13} and later improved by same authors in later work \cite{Saarinen213}. Every cell in NDT-OM is represented with parameters $c_{i}=\{\mu_{i}, p_{i}, N_{i},p_{i}\}$, where $\mu_{i}$ and $P_{i}$ are parameters of estimated normal distribution, $N_{i}$ is number of points in cell and $p_{i}$ is probability of the cell being occupied. 
 
-Calculation of occupancy parameter is done by ray-tracing. Consider that we have current map $m_{x}$. We have calculated new NDT map $m_{y}$ from incoming distance measurements. Both maps needs to be in the same coordinate system. Ray-tracing starts at current robot position in map $m_{x}$ and ends in cell of map $m_{x}$, where we will later merge in cell from $m_{y}$. Program visits every cell along the line and updates covariance based on equation \ref{NDT_OM_OCCUP}\todo{ref}. When is ray-tracing over we merge in all cells from $m_{y}$ into $m_{x}$ with RCU update rule.
+Calculation of occupancy parameter is done by ray-tracing. Consider that we have current map $m_{x}$. We have calculated new NDT map $m_{y}$ from incoming distance measurements. Both maps needs to be in the same coordinate system. Ray-tracing starts at current robot position in map $m_{x}$. End point of ray-tracing is value of mean from one of the cells in new map $m_{y}$. Program visits every cell along the line and updates covariance. It is important to visit every cell just once. When is ray-tracing over we merge in all cells from $m_{y}$ into $m_{x}$ with RCU update rule.
+
+The main idea in occupancy update calculation is that not all cells are occupied fully. Normal distribution usually occupies only part of the cell. A ray tracing through this cell might not intersect bounds of normal distribution at all. In order to consistently update occupancy the update value should not be a constant. Better option is to choose a function describing difference between map $m_{y}$ and $m_{x}$. This function with explanation might be found in \cite{Saarinen213}.
+\todo{pridat obrazok rautracingu}
+
+
+%Ray tracing line starts at point $x_{s}$ and ends in point $y_{i}$. We define our line in slope-intercept form with parameter $t \in \R $ and $l_{o}$ is a point on the line:
+%\begin{equation}
+%x(t) = \frac{y_{i} - x_{s}}{ \lVert y_{i} - x_{s} \lVert } \:t + l_{o}
+%\end{equation}
+%Given a normal distribution $N(\mu_{i}, P_{i})$ from the cell hit by ray-tracing, the likelihood along the line is defined as function:
+
 \newpage   
 \section{Scan registration}
 \label{Scan_reg}
-Scan registration is the esential part of SLAM front-end.
+Scan registration is one of the key concepts in full SLAM solution. Algorithm can use scan matching between two scans to determine transformation. It tells how far robot moved between scans. Two scans might not offer enough information for successful registration. Imagine a robot which is standing in the corner of a room with sensor facing the wall. Scan from this robot has only information from very limited field of view and this might lead to matching errors. Therefore, it is usually necessary to combine individual scans to operate with more data.  
+
+One of the algorithms which uses this process is called incremental scan-matching. It takes arriving scan and tries to match it against the map built from previous measurements. By doing so it can very well be used instead of robots odometry in SLAM's graph creation. Algorithms which are possible to work in incremental scan-matching are mentioned in sections \ref{P2D_NDT} and \ref{D2D_NDT}. Other often used approach is the ICP (Iterative Closest Point) which is well described in \cite{ICP}. This algorithm works on top of point clouds. It tries to minimize square distances between points of two scans. It needs good initial transformation estimate for correct matching. 
+
+Another example of usage scan registration in SLAM is for testing generated loop closures. Loop closures are created by SLAM's front-end as mentioned in section \ref{Pose_graph_creation}. Measurements from nodes which play role in loop closure are scan matched. By doing this we are trying to proof if two nodes are really overlapping.  The Biggest problem with this registration is that we have no valid prior information about positions of these nodes. These two scans might be perfectly aligned or they can be from complitli diffrent parts of the world. Registration needs to robustly estimate the transformation. In case of misleading closure algorithm should reject it. One scan-matcher capable of robust transformation calculation is mentioned in \ref{Corr}.  
+
+
+Even robust scan-matchers can fail to correctly identify loop closures.  These registration mismatches can be divided into two categories.
+
+The First category is local ambiguity. Good example of it is when robot moves in long corridor as seen in figure \ref{Pic_coridor} on the left. Environment does not have many distinctive features and algorithm selected one of three possible correct options.
+
+The second category is global ambiguity. This ambiguity usually happens when algorithm do not have enough information about whole environment. Limited size of scans and environment with similar undistinguishable elements can resolv in wrong asociation. One example can be seen in figure \ref{Pic_coridor} on the right.   
+     
+ \begin{figure}
+ \label{Pic_coridor}
+
+ \end{figure}
+
+  \todo{picture of corridor}
+  \newpage
+\subsection{NDT registration}
+\label{P2D_NDT}
+NDT registration process was first time explained by \cite{Biber03}. They have explained how to make 2D registration between older scan (target scan) and newer scan (source scan). Target scan was converted to NDT grid by technique mentioned in section \ref{NDT_grid}. Result of registration should be transformation defined in 2D:
+\begin{equation}
+T: 
+\begin{pmatrix}
+x' \\ y'
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos \theta  & -\sin \theta\\
+\sin \theta & \cos \theta
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}
++
+\begin{pmatrix}
+t_{x} \\ t_{y} 
+\end{pmatrix}
+\end{equation}
+where $ (t_{x},t_{y})^{T}$ represents translation and $\theta$ represents rotation. Transformation is used for transforming source scan. At the beginning of program parameters of transformation are initialized either by zero or from initial guess. For each point of transformed scan cost function is computed This function is defined as:
+\begin{equation}
+score(\textbf{p}) = \sum_{i}^{} \exp(-\frac{1}{2} ((T(x_{i},\textbf{p})- \mu_{i})^{T} P^{-1}_{i}   (T(x_{i},\textbf{p})- \mu_{i}) ) 
+\end{equation}
+where $\textbf{p} = (t_{x},t_{y}, \theta)$ are parameters of transformation, $N(\mu_{i},P_{i})$ are parameters of normal distribution where point $x$ is transformed by transformation $T$.Goal of the NDT scan-matching is to find parameters $\textbf{p}$ which maximize this function. This maximization problem is changed to minimization problem by searching for minimal value of -score. Newton's algorithm finds minimizing parameters in $p$ by iteratively solving equation 
+\begin{equation}
+ H \varDelta p = -g
+\end{equation}  
+
+Representation of hessian, gradient and all derivations might be found in work of \cite{magnusson09}. Magnusson also introduced new scaling parameters into score function in order to reject possible outliers. Probability distribution function (PDF) inside of cells of target NDT grid may not be always from normal distribution. In practice any representation which approximates structure of the element is valid. Outliers are points far from the mean of distribution and cause unbounded growth of PDF.
+
+At the begining algorithm created discrete NDT grid out of target scan. This introduces discretization problems. These problems are cause by points generating PDF which are larger than their cells. In original work of \cite{Biber03} this was solved by creating 4 target grids where each grid is translated by half of cell size in single direction. This process made this algorithm inefficient. Introduction of multi layer NDT grid struction presented by \cite{ulas20113d} solved this problem. Multi-layer approach consists of multiple grids width diffrent resolution. Grids are ordered from coarser grid to finer grid. Algorithm start with coarse grid and estimates parameters of transformation. Calculated transformation is used as initial guess at lower level. This principle practically eliminated need for four overlapping grids. It also offered better convergence time and increase in robustness. Algorithm is able to converge when matched scan are farther away. Configuration which works the best is 4 layers with cell sizes 2, 1, 0.5 and 0.25 meters. 
+
+Another improvement to algorithm is usage of concept of linked cells. In practical registration very often part of the source scan lie far from any target cells. This causes only small portion or points contributing to score function. It can cause algorithm failure or just increase time of convergence. Linked cells prevent this by providing for every point in source scan closest cell in target scan. Implementation of this technique is possible with use of kD-tree with means of all cells as input points. Every point or source scan finds k-nearest cells and execute score calculation on them.
+
+\begin{algorithm}
+\label(alg-p2d-ndt)
+\begin{algorithmic}[1]
+ \Require source scan= $s$ target scan= $k$
+\end{algorithmic}
+\end{algorithm}         
  
-\subsection{Point to distribution NDT registration}
 \newpage
 \subsection{Distribution to distribution NDT registration}
+\label{D2D_NDT}
 \newpage
 \subsection{Correlative scan registration}
+\label{Corr}
 \newpage
 \section{NDT graph slam analyses}
 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -20,6 +20,19 @@ P.~Biber and W.~Strasser.
   2743--2748 vol.3, Oct 2003.
 \newblock \doi{10.1109/IROS.2003.1249285}.
 
+\bibitem[Magnusson(2009)]{magnusson09}
+Martin Magnusson.
+\newblock The three-dimensional normal-distributions transform: an efficient
+  representation for registration, surface analysis, and loop detection.
+\newblock 2009.
+
+\bibitem[Rusinkiewicz and Levoy(2001)]{ICP}
+S.~Rusinkiewicz and M.~Levoy.
+\newblock Efficient variants of the icp algorithm.
+\newblock In \emph{3-D Digital Imaging and Modeling, 2001. Proceedings. Third
+  International Conference on}, pages 145--152, 2001.
+\newblock \doi{10.1109/IM.2001.924423}.
+
 \bibitem[Saarinen et~al.(2013{\natexlab{a}})Saarinen, Andreasson, Stoyanov,
   Ala-Luhtala, and Lilienthal]{Saarinen13}
 J.~Saarinen, H.~Andreasson, T.~Stoyanov, J.~Ala-Luhtala, and A.~J. Lilienthal.
@@ -37,5 +50,12 @@ J.~Saarinen, T.~Stoyanov, H.~Andreasson, and A.~J. Lilienthal.
 \newblock In \emph{2013 IEEE/RSJ International Conference on Intelligent Robots
   and Systems}, pages 4694--4701, Nov 2013{\natexlab{b}}.
 \newblock \doi{10.1109/IROS.2013.6697032}.
+
+\bibitem[Ulas and Temeltas(2011)]{ulas20113d}
+Cihan Ulas and Hakan Temeltas.
+\newblock A 3d scan matching method based on multi-layered normal distribution
+  transform.
+\newblock \emph{IFAC Proceedings Volumes}, 44\penalty0 (1):\penalty0
+  11602--11607, 2011.
 
 \end{thebibliography}
