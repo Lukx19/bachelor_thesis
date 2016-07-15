@@ -232,8 +232,32 @@ The iterative closest point (\gls{ICP}) algorithm was first introduced by \cite{
 \newpage
 \subsection{Correlative scan registration}
 \label{subsec:Corr}
-Correlative scan registration is algorithm using two point clouds for registration.
+Correlative scan registration is algorithm presented by \cite{olson2009real}. This method was developed to robustly solve registration problem. It does not require any initial guess. Therefore, it is possible to use this method for purposes of loop closure registration.
+
+ The algorithm requires two point clouds. Target point cloud is used for generation of fast look up table filled with bit values. It is created by separating points from target cloud into individual cells. Every cell which has some points in it is marked as occupied. After this step we have a table with value 1 in cells with some points and value 0 in cells without points. In next step we add sensor noise to the table. As a function of our noise we use radially symmetric kernel. 
+ \begin{equation}
+ K_{i,j} = \exp\left(\frac{-1}{2}\left(\frac{\sqrt{(i r)^{2} + (j r)^{2}}}{\sigma}\right)^{2}\right) \eta
+ \end{equation}
+ \begin{equation}
+ K =
+ \begin{pmatrix}
+  2 & 14 & 2\\
+  14 & 100 & 14 \\
+  2 & 14 & 2 
+ \end{pmatrix}
+ \end{equation}
+ where $K_{i,j}$ is one element of kernel; $\sqrt{(i r)^{2} + (j r)^{2}}$ is euclidean distance from center of the kernel to the element $i,j$ with cell size parameter $r$. Standard deviation of sensor nose is abbreviated by $\sigma$ and $\eta$ is kernels max value.
+
+ The Kernel overlaps over every occupied cell in the table. If value of kernel is higher than value in table. Table is updated with the kernels value. Generated smoothing can be seen in figure \ref{fig:Corr_smooth}.
+ 
+ This algorithm is avoiding initial guess by trying all possible rotations and translations of source cloud. Every point of transformed source cloud is mapped into certain cell of look up table. The total score of transformed cloud is sum of all mapped cells scores. Algorithm usually tries rotations and translations from selected range. Transformation with the best score is the most probable transformation.
+ 
+ This brute force process might take long time if we select small cell size to achieve good registration. To speed up this process we first need to avoid computationally expensive calculation of goniometric functions in transformation. This can be achieved by first generating all possible rotations of point cloud. For each rotation we try all translations from selected range with step size selected based on cell size of look up table.
+ 
+ Real speed improvements offers usage of two layer architecture of look up tables. The first table has coarse resolution. This table is used for initial estimation on the whole range of selected rotations and translations. The transformations with best score are used in the second round. From every good transformation is generated search space voxel. Origin of voxel is taken from transformation. Size of voxel is cell size from coarse table. Search voxels are evaluated on look up table with fine resolution. Search space is this time limited to search voxel and initial transformation is taken from origin of voxel. The best result is our solution. By this process computation time drops rapidly as show in work of \cite{olson2009real}.     
+    
 \newpage
 \section{NDT graph slam analyses}
 \label{subsec:analyses}
+
 

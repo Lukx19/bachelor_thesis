@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -33,6 +33,12 @@ Martin Magnusson.
 \newblock The three-dimensional normal-distributions transform: an efficient
   representation for registration, surface analysis, and loop detection.
 \newblock 2009.
+
+\bibitem[Olson(2009)]{olson2009real}
+Edwin~B Olson.
+\newblock Real-time correlative scan matching.
+\newblock In \emph{Robotics and Automation, 2009. ICRA'09. IEEE International
+  Conference on}, pages 4387--4393. IEEE, 2009.
 
 \bibitem[Pomerleau et~al.(2013)Pomerleau, Colas, Siegwart, and
   Magnenat]{pomerleau2013comparing}
