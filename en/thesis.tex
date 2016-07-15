@@ -45,9 +45,14 @@
 \usepackage{paralist}       % improved enumerate and itemize
 \usepackage[usenames]{xcolor}  % typesetting in color
 
+%my packages
 \usepackage{todonotes}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage[acronym,toc,nomain]{glossaries}
+
+\makeglossaries
+
 %%% Basic information on the thesis
 
 % Thesis title in English (exactly as in the formal assignment)
@@ -105,6 +110,9 @@ Abstract.
 % Definitions of macros (see description inside)
 \include{macros}
 
+% Definitions of acronyms
+\include{abbreviations}
+
 % Title page and various mandatory informational pages
 \begin{document}
 \include{title}
@@ -129,12 +137,14 @@ Abstract.
 
 %%% Tables used in the thesis (consider if this is needed)
 %%% In mathematical theses, it could be better to move the list of tables to the beginning of the thesis.
-\listoftables
+%\listoftables
 
 %%% Abbreviations used in the thesis, if any, including their explanation
 %%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
-\chapwithtoc{List of Abbreviations}
+%\printglossary[title=List of Abbreviations,type=\acronymtype]
 
+%\chapwithtoc{List of Abbreviations}
+\printglossary[title=List of Abbreviations]
 %%% Attachments to the bachelor thesis, if any. Each attachment must be
 %%% referred to at least once from the text of the thesis. Attachments
 %%% are numbered.

@@ -2,7 +2,7 @@
 This section offers basing introduction to multiple state-of-the-art algorithms used in this work. Good understanding of these concepts is crucial for full comprehension of section 3 \todo{ref}. 
 
 \section{SLAM problem definition}
-Successfully solving SLAM problem means to find location of robot in every time step and be able to create map at that time-stamp. In real world we deal with robot's sensors which have always some inherited noise. This means we are not able to fully say exact position of robot. This is main reason why to use probabilistic definition of problem. Robot moves through unknown space along trajectory expressed as variables $ \textbf{x}_{1:T} = \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. While moving robot is taking odometry measurements $ \textbf{u}_{1:T} = \{\textbf{u}_{1},...,\textbf{u}_{T}\}$ and perception of environment $ \textbf{z}_{1:T} = \{\textbf{z}_{1},...,\textbf{z}_{T}\}$ Solving SLAM than means finding out probability of the robot's trajectory $ \textbf{x}_{1:T}$ and a map \textbf{m} of local environment given all the measurements and initial pose $ \textbf{x}_{0}$:
+Successfully solving \gls{SLAM} problem means to find location of robot in every time step and be able to create map at that time-stamp. In real world we deal with robot's sensors which have always some inherited noise. This means we are not able to fully say exact position of robot. This is main reason why to use probabilistic definition of problem. Robot moves through unknown space along trajectory expressed as variables $ \textbf{x}_{1:T} = \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. While moving robot is taking odometry measurements $ \textbf{u}_{1:T} = \{\textbf{u}_{1},...,\textbf{u}_{T}\}$ and perception of environment $ \textbf{z}_{1:T} = \{\textbf{z}_{1},...,\textbf{z}_{T}\}$ Solving SLAM than means finding out probability of the robot's trajectory $ \textbf{x}_{1:T}$ and a map \textbf{m} of local environment given all the measurements and initial pose $ \textbf{x}_{0}$:
 \begin{equation}
 p(\textbf{x}_{1:T}, \textbf{m}\: |\:  \textbf{z}_{1:T}, \textbf{u}_{1:T}, \textbf{x}_{0})
 \end{equation}
@@ -28,19 +28,19 @@ Loop closure edge generation
 \label{MAP_REPRE}
 Successful solving SLAM problem should output map of the unknown environment. This map needs to be stored for local path planning and obstacle avoidance. It is also needed for scan registration. Algorithms for avoiding obstacles very often need precise map. Map should keep low memory consumption, because robots very often have limited access to memory. Scan registration algorithms usually might benefit from maps with high precision.
 
-Point-cloud is map representation which stores all measured points. This is very precise representation. All input data is still in its raw form. We are not loosing any information. Scan-matching algorithms e.g. ICP  \todo{citace} ------ is working on top of this datastructure. It is very easy to convert from this model to different type of map if needed. Problematic is memory consumption. If robot runs for long period with higher frequency of data production, it is likely that robot will run out of memory.
+Point-cloud is map representation which stores all measured points. This is very precise representation. All input data is still in its raw form. We are not loosing any information. Scan-matching algorithms e.g. \gls{ICP} is working on top of this datastructure. It is very easy to convert from this model to different type of map if needed. Problematic is memory consumption. If robot runs for long period with higher frequency of data production, it is likely that robot will run out of memory.
 
 Occupancy map is grid based type. It consists of grid with cells. In every cell we have just one value describing probability that this cell is occupied. Value becomes higher with more incoming data measurements. It has constant memory consumption with respect to time of robot's run-time. It is possible to use this representation for map to map registration process. This model is also possible to represent empty spaces (low probability). This feature is used by many path planning and obstacle avoidance algorithms. That is why, occupancy maps are main output format for SLAM algorithms in ROS. It is important to select good resolution of grid. Finer grid offers better detail but higher memory consumption.
 
-Quad-tree is a tree data structure. Each node of the tree has exactly four children. Nodes are decomposing space into sub-areas. Every node has its threshold. When it is reached, cell subdivides into four smaller cells. This process dynamically change resolution of the grid. This way we get higher precision in places where it matters more. It is crucial part of speeding up performance of ICP registration \todo{citace} ----------.
+Quad-tree is a tree data structure. Each node of the tree has exactly four children. Nodes are decomposing space into sub-areas. Every node has its threshold. When it is reached, cell subdivides into four smaller cells. This process dynamically change resolution of the grid. This way we get higher precision in places where it matters more. Maximal precision is usually bounded by minimal size of leaf nodes.
 
-Normal distributions transform (NDT) representation uses grid based datastructure. Each cell has normal distribution parameters calculated based on inserted points. This model offers constant memory consumption over time. In comparison, NDT has better representation of inner points than octree (3D case of quad-tree). This was proven as convenient by \todo{citace}. They have shown that coarser NDT grid can have similar results as finer octree map. NDT grids have their own class of registration whoch will be explained in next sections.     
+\gls{NDT} representation uses grid based datastructure. Each cell has normal distribution parameters calculated based on inserted points. This model offers constant memory consumption over time. In comparison, \gls{NDT} has better representation of inner points than octree (3D case of quad-tree). This was proven as convenient by \cite{Saarinen13}. They have shown that coarser \gls{NDT} grid can have similar results in precision of space representation than finer octree map. \gls{NDT} grids have their own class of registration whoch will be explained in next sections.     
 \todo{picture of occupancy grid, pointcloud ndt grid}
 \newpage
 
 
 \subsection{NDT grid}
-\label{NDT_grid}
+\label{subsec:NDT_grid}
 The normal distributions transform(NDT) grid representation was first time used by \cite{Biber03} in their scan registration process. Central idea was to convert laser scan into grid with cells containing normal distributions. Points in space from laser scanner are first separated into corresponding cells. From points in sigle cell we approximate normal distribution $(\mu_{i},P_{i})$ by calculating mean and covariance:
 \begin{equation}
 \mu_{i} = \dfrac{1}{n}\sum_{k=1}^{n}x_{k}
@@ -108,16 +108,16 @@ The main idea in occupancy update calculation is that not all cells are occupied
 \label{Scan_reg}
 Scan registration is one of the key concepts in full SLAM solution. Algorithm can use scan matching between two scans to determine transformation. It tells how far robot moved between scans. Two scans might not offer enough information for successful registration. Imagine a robot which is standing in the corner of a room with sensor facing the wall. Scan from this robot has only information from very limited field of view and this might lead to matching errors. Therefore, it is usually necessary to combine individual scans to operate with more data.  
 
-One of the algorithms which uses this process is called incremental scan-matching. It takes arriving scan and tries to match it against the map built from previous measurements. By doing so it can very well be used instead of robots odometry in SLAM's graph creation. Algorithms which are possible to work in incremental scan-matching are mentioned in sections \ref{P2D_NDT} and \ref{D2D_NDT}. Other often used approach is the ICP (Iterative Closest Point) which is well described in \cite{ICP}. This algorithm works on top of point clouds. It tries to minimize square distances between points of two scans. It needs good initial transformation estimate for correct matching. 
+One of the algorithms which uses this process is called incremental scan-matching. It takes arriving scan and tries to match it against the map built from previous measurements. By doing so it can very well be used instead of robots odometry in \gls{SLAM}'s graph creation. Algorithms which are possible to work in incremental scan-matching are mentioned in sections \ref{subsec:P2D_NDT} and \ref{subsec:D2D_NDT}. Other often used approach is the \gls{ICP}, which is described in \ref{subsec:ICP}. All these algorithms use optimization methods, e.g. Newton's method. Good initial guess is needed in order to guarantee converge to the right solution. 
 
-Another example of usage scan registration in SLAM is for testing generated loop closures. Loop closures are created by SLAM's front-end as mentioned in section \ref{Pose_graph_creation}. Measurements from nodes which play role in loop closure are scan matched. By doing this we are trying to proof if two nodes are really overlapping.  The Biggest problem with this registration is that we have no valid prior information about positions of these nodes. These two scans might be perfectly aligned or they can be from complitli diffrent parts of the world. Registration needs to robustly estimate the transformation. In case of misleading closure algorithm should reject it. One scan-matcher capable of robust transformation calculation is mentioned in \ref{Corr}.  
+Another example of usage scan registration in \gls{SLAM} is for testing generated loop closures. Loop closures are created by \gls{SLAM}'s front-end as mentioned in section \ref{Pose_graph_creation}. Measurements from nodes which play role in loop closure are scan matched. By doing this we are trying to proof if two nodes are really overlapping.  The Biggest problem with this registration is that we have no valid prior information about positions of these nodes. These two scans might be perfectly aligned or they can be from completely different parts of the world. Registration needs to robustly estimate the transformation. In case of misleading closure algorithm should reject it. One scan-matcher capable of robust transformation calculation is mentioned in \ref{subsec:Corr}.  
 
 
 Even robust scan-matchers can fail to correctly identify loop closures.  These registration mismatches can be divided into two categories.
 
 The First category is local ambiguity. Good example of it is when robot moves in long corridor as seen in figure \ref{Pic_coridor} on the left. Environment does not have many distinctive features and algorithm selected one of three possible correct options.
 
-The second category is global ambiguity. This ambiguity usually happens when algorithm do not have enough information about whole environment. Limited size of scans and environment with similar undistinguishable elements can resolv in wrong asociation. One example can be seen in figure \ref{Pic_coridor} on the right.   
+The second category is global ambiguity. This ambiguity usually happens when algorithm do not have enough information about whole environment. Limited size of scans and environment with similar indistinguishable elements can resolve in wrong association. One example can be seen in figure \ref{Pic_coridor} on the right.   
      
  \begin{figure}
  \label{Pic_coridor}
@@ -127,8 +127,8 @@ The second category is global ambiguity. This ambiguity usually happens when alg
   \todo{picture of corridor}
   \newpage
 \subsection{NDT registration}
-\label{P2D_NDT}
-NDT registration process was first time explained by \cite{Biber03}. They have explained how to make 2D registration between older scan (target scan) and newer scan (source scan). Target scan was converted to NDT grid by technique mentioned in section \ref{NDT_grid}. Result of registration should be transformation defined in 2D:
+\label{subsec:P2D_NDT}
+NDT registration process was first time explained by \cite{Biber03}. They have explained how to make 2D registration between older scan (target scan) and newer scan (source scan). Target scan was converted to NDT grid by technique mentioned in section \ref{subsec:NDT_grid}. Result of registration should be transformation defined in 2D:
 \begin{equation}
 T: 
 \begin{pmatrix}
@@ -156,25 +156,84 @@ where $\textbf{p} = (t_{x},t_{y}, \theta)$ are parameters of transformation, $N(
  H \varDelta p = -g
 \end{equation}  
 
-Representation of hessian, gradient and all derivations might be found in work of \cite{magnusson09}. Magnusson also introduced new scaling parameters into score function in order to reject possible outliers. Probability distribution function (PDF) inside of cells of target NDT grid may not be always from normal distribution. In practice any representation which approximates structure of the element is valid. Outliers are points far from the mean of distribution and cause unbounded growth of PDF.
+Representation of hessian, gradient and all derivations might be found in work of \cite{magnusson09}. Magnusson also introduced new scaling parameters into score function in order to reject possible outliers. \gls{PDF} inside of cells of target \gls{NDT} grid may not be always from normal distribution. In practice any representation which approximates structure of the element is valid. Outliers are points far from the mean of distribution and cause unbounded growth of \gls{PDF}.
 
-At the begining algorithm created discrete NDT grid out of target scan. This introduces discretization problems. These problems are cause by points generating PDF which are larger than their cells. In original work of \cite{Biber03} this was solved by creating 4 target grids where each grid is translated by half of cell size in single direction. This process made this algorithm inefficient. Introduction of multi layer NDT grid struction presented by \cite{ulas20113d} solved this problem. Multi-layer approach consists of multiple grids width diffrent resolution. Grids are ordered from coarser grid to finer grid. Algorithm start with coarse grid and estimates parameters of transformation. Calculated transformation is used as initial guess at lower level. This principle practically eliminated need for four overlapping grids. It also offered better convergence time and increase in robustness. Algorithm is able to converge when matched scan are farther away. Configuration which works the best is 4 layers with cell sizes 2, 1, 0.5 and 0.25 meters. 
+At the beginning, algorithm created discrete \gls{NDT} grid out of target scan. This introduces discretization problems. These problems are cause by points generating \gls{PDF} which are larger than their cells. In the original work of \cite{Biber03} this was solved by creating 4 target grids where each grid is translated by half of the cell size in single direction. This process made this algorithm inefficient. Introduction to multi-layer \gls{NDT} grid structure, presented by \cite{ulas20113d}, solved this problem. Multi-layer approach consists of several grids with different resolution. Grids are ordered from coarser grid to finer grid. Algorithm starts with coarse grid and estimates parameters of transformation. Calculated transformation is used as initial guess at lower level. This principle practically eliminated need for four overlapping grids. It also offered better convergence time and increase to robustness. Algorithm is able to converge when matched scans are farther away. Good configuration is 4 layers with cell sizes 2, 1, 0.5 and 0.25 meters. 
 
-Another improvement to algorithm is usage of concept of linked cells. In practical registration very often part of the source scan lie far from any target cells. This causes only small portion or points contributing to score function. It can cause algorithm failure or just increase time of convergence. Linked cells prevent this by providing for every point in source scan closest cell in target scan. Implementation of this technique is possible with use of kD-tree with means of all cells as input points. Every point or source scan finds k-nearest cells and execute score calculation on them.
+Another improvement to algorithm is usage of concept of linked cells. In practical registration very often part of the source scan lie far from any target cells. This causes only small portion of points contribute to score function. It can cause algorithm failure or just increase time of convergence. Linked cells prevent this by providing cells in target scan, which are close to the point from source scan. Implementation of this technique is possible with use of kD-tree with means of all cells as input points. Every point or source scan finds k-nearest cells and execute score calculation on them.
 
 \begin{algorithm}
-\label(alg-p2d-ndt)
+\label{alg:p2d_ndt}
+    \caption{\gls{NDT} algortihms with muilti layer and linked cell enhancements}
 \begin{algorithmic}[1]
- \Require source scan= $s$ target scan= $k$
+ \Require source scan, target scan,  parameters $(x,y,\theta)$ of initial transformation, cell resolution for each layer
+ \Function{NDTRegistration}{$scan_{s}$, $scan_{t}$, $p_{init}$,$resolutions$}
+	 \State $\textbf{p} \gets p_{init}$
+	 \ForAll{$res$ from $resolutions$}
+		 \State $ndt_{t} \gets$createNDTGrid($res$,$scan_{t}$)
+		 \Comment described in section \ref{subsec:NDT_grid}
+		 \State transform each point $x_{i} \in scan_{trans}$ with $T(x_{i},\textbf{p})$
+		 \State $\textbf{p} \gets$ computeSingleGrid($scan_{trans}$, $ndt_{t}$, $\textbf{p}$)
+	 \EndFor
+	 \State \Return calculated parameters $\textbf{p}$ of transformation
+ \EndFunction
 \end{algorithmic}
-\end{algorithm}         
+\end{algorithm}
+\begin{algorithm}
+\label{alg:p2d_ndt_single}
+\caption{Computing transformation on with single target \gls{NDT} grid and source point cloud}
+\begin{algorithmic}[1]
+ \Require source scan, target NDT grid,  parameters $(x,y,\theta)$ of initial transformation
+ \Function{computeSingleGrid}{$scan_{s}$, $ndt_{t}$,$p_{init}$}
+	 \While {not converged}
+		 \State $\textbf{p} \gets p_{init}$
+		 \State $(score, g,H) \gets (0,0,0)$
+		 \ForAll {points $x_{i} \in scan_{trans}$}
+			 \State $\bar{x_{i}} \gets T(x_{i},\textbf{p})$
+			 \State $cells \gets $find k-closest cells to $\bar{x_{i}} $
+			 \ForAll{cells $c_{i} \in cells$}
+			 \State \{based on \cite{magnusson09}\}
+				 \State $(score,g,H) \gets (score,g,H)  + $ calcNewtonParameters($c_{i}$,$\bar{x_{i}}$)
+			 \EndFor 
+		 \EndFor
+		 \State solve $H\varDelta p = - g$
+		 \State $\textbf{p} \gets \textbf{p} + \varDelta p$
+	 \EndWhile
+	 \State \Return $\textbf{p}$
+ \EndFunction
+\end{algorithmic}
+\end{algorithm}
+         
  
 \newpage
-\subsection{Distribution to distribution NDT registration}
-\label{D2D_NDT}
+\subsection{D2D-NDT registration}
+\label{subsec:D2D_NDT}
+\gls{D2D}-\gls{NDT} is variant of \gls{NDT} registration algorithm proposed by \cite{Stoyanov01102012}. It is extension of original algorithm presented in section \ref{subsec:P2D_NDT}. Instead of using only one grid for target scan. This aproach uses two grids. One for source scan and second for target grid. Algorithm than minimize the sum of $L_{2}$ distances between pairs of \gls{PDF}'s from both grids. Formally, transformation between two sets of cells $X$ and $Y$ is defined as:
+\begin{equation}
+f(\textbf{p}) = \sum_{i = 1, j =1}^{n_{X}, n_{Y}} -d_{1}\exp\left( - \frac{d_{2}}{2}  \mu_{ij}^{T}(R^{T}P_{i}R + P_{j})^{-1} \mu_{ij} \right)
+\end{equation}
+\begin{equation}
+\label{eq:D2D_2}
+\mu_{ij} = R\mu_{i} + t - \mu_{j}
+\end{equation}
+where $\textbf{p} = (t_{x},t_{y},\theta)$; $X(\mu_{i},P_{i})$ and $Y(\mu_{j}, P_{j})$ are \gls{PDF}'s of individual cells in pair; a pair $(R,t)$ represents rotation matrix from parameter $\theta$ and translation vector $t=(t_{x},t_{y})$. Regulation parameters d1 and d2 are set to values $d_{1} = 1$ and $d_{2}=0.05$. Equation \ref{eq:D2D_2} represents difference in means where mean $u_{i}$ is transformed to new position.
+
+Optimization of this function is done in similar way to \ref{subsec:P2D_NDT}  by utilizing Newtons method and solving $H\varDelta \textbf{p} = -g$. Derivations for calculation of hessian and gradient are presented in work of \cite{Stoyanov01102012}.
+
+This algorithm is also possible to improve by iterating over multiple layers with different resolutions similar to \gls{NDT} registration in previous section.
+
+In comparison, with \gls{NDT} registration this algorithm needs only \gls{NDT} grids for registration. Point cloud can be thrown away after successful creation of grid. This allow saving memory and efficiently represent maps in \gls{SLAM}. In addition, \gls{D2D} is almost ten times faster than standard \gls{NDT} registration on same dataset. This was proven in comparative study from \cite{NDTcomparative}. The main cause of this speed up is smaller number of calls for score calculation. In \gls{P2D}-\gls{NDT} mentioned in last section we need to calculate score for each point in source point cloud. In case of \gls{D2D} we just calculate score function for each cell of source grid. This is done by generating only pairs between cell from source grid and closest cell from target cell. Closest cell can be easily found by using kD-tree with values of target grid's means.
+  
+\subsection {ICP}
+\label{subsec:ICP}
+The iterative closest point (\gls{ICP}) algorithm was first introduced by \cite{chen92ICP} and it is still very popular method for registering point clouds. To briefly summaries algorithm: ICP iteratively refines position of two point clouds by optimizing the sum of square distances between corresponding pair of points from two clouds. This approach is usually called point-to-point registration. Class of algorithms based on \gls{ICP} has developed many modifications. Surrvey of base type of ICP algorithms and their comparison on well designed datasets is in work of \cite{pomerleau2013comparing}. 
+
+
 \newpage
 \subsection{Correlative scan registration}
-\label{Corr}
+\label{subsec:Corr}
+Correlative scan registration is algorithm using two point clouds for registration.
 \newpage
 \section{NDT graph slam analyses}
+\label{subsec:analyses}
 

@@ -1,15 +1,9 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{9}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Anděl(2007)]{Andel07}
-J.~Anděl.
-\newblock \emph{Základy matematické statistiky}.
-\newblock Druhé opravené vydání. Matfyzpress, Praha, 2007.
-\newblock ISBN 80-7378-001-1.
 
 \bibitem[Biber and Strasser(2003)]{Biber03}
 P.~Biber and W.~Strasser.
@@ -20,18 +14,32 @@ P.~Biber and W.~Strasser.
   2743--2748 vol.3, Oct 2003.
 \newblock \doi{10.1109/IROS.2003.1249285}.
 
+\bibitem[Chen and Medioni(1992)]{chen92ICP}
+Yang Chen and G{\'e}rard Medioni.
+\newblock Object modelling by registration of multiple range images.
+\newblock \emph{Image and vision computing}, 10\penalty0 (3):\penalty0
+  145--155, 1992.
+
+\bibitem[Magnusson et~al.(2015)Magnusson, Vaskevicius, Stoyanov, Pathak, and
+  Birk]{NDTcomparative}
+M.~Magnusson, N.~Vaskevicius, T.~Stoyanov, K.~Pathak, and A.~Birk.
+\newblock Beyond points: Evaluating recent 3d scan-matching algorithms.
+\newblock In \emph{2015 IEEE International Conference on Robotics and
+  Automation (ICRA)}, pages 3631--3637, May 2015.
+\newblock \doi{10.1109/ICRA.2015.7139703}.
+
 \bibitem[Magnusson(2009)]{magnusson09}
 Martin Magnusson.
 \newblock The three-dimensional normal-distributions transform: an efficient
   representation for registration, surface analysis, and loop detection.
 \newblock 2009.
 
-\bibitem[Rusinkiewicz and Levoy(2001)]{ICP}
-S.~Rusinkiewicz and M.~Levoy.
-\newblock Efficient variants of the icp algorithm.
-\newblock In \emph{3-D Digital Imaging and Modeling, 2001. Proceedings. Third
-  International Conference on}, pages 145--152, 2001.
-\newblock \doi{10.1109/IM.2001.924423}.
+\bibitem[Pomerleau et~al.(2013)Pomerleau, Colas, Siegwart, and
+  Magnenat]{pomerleau2013comparing}
+Fran{\c{c}}ois Pomerleau, Francis Colas, Roland Siegwart, and St{\'e}phane
+  Magnenat.
+\newblock Comparing icp variants on real-world data sets.
+\newblock \emph{Autonomous Robots}, 34\penalty0 (3):\penalty0 133--148, 2013.
 
 \bibitem[Saarinen et~al.(2013{\natexlab{a}})Saarinen, Andreasson, Stoyanov,
   Ala-Luhtala, and Lilienthal]{Saarinen13}
@@ -50,6 +58,15 @@ J.~Saarinen, T.~Stoyanov, H.~Andreasson, and A.~J. Lilienthal.
 \newblock In \emph{2013 IEEE/RSJ International Conference on Intelligent Robots
   and Systems}, pages 4694--4701, Nov 2013{\natexlab{b}}.
 \newblock \doi{10.1109/IROS.2013.6697032}.
+
+\bibitem[Stoyanov et~al.(2012)Stoyanov, Magnusson, Andreasson, and
+  Lilienthal]{Stoyanov01102012}
+Todor Stoyanov, Martin Magnusson, Henrik Andreasson, and Achim~J Lilienthal.
+\newblock Fast and accurate scan registration through minimization of the
+  distance between compact 3d ndt representations.
+\newblock \emph{The International Journal of Robotics Research}, 31\penalty0
+  (12):\penalty0 1377--1393, 2012.
+\newblock \doi{10.1177/0278364912460895}.
 
 \bibitem[Ulas and Temeltas(2011)]{ulas20113d}
 Cihan Ulas and Hakan Temeltas.

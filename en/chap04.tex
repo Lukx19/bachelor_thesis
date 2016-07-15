@@ -4,35 +4,11 @@
 
 \section{Results}
 
-\begin{algorithm}
-    \caption{Proposed algorithm for estimating transformation between multiple occupancy grids. Uses Algorithm~\ref{alg:estimatefinaltrans} to estimate final transformations.}
-    \label{alg:estimategridtrasform}
-    \begin{algorithmic}[1]
-        \REQUIRE $k$ occupancy grids
-        \ENSURE for each grid: transformation between grid and global reference frame, or value indicating transformation could not be be estimated for current grid
-        \PROCEDURE{estimateGridTransform}{$grids$}
-            \STATE detect \GLS{ORB} features (keypoints) for each grid
-            \ForAll{$(i,j)$ pair of grids} \Comment{compute transform for each pair}
-            	\State match features
-            	\State $n \gets \text{number of matches}$
-            	\If{$n \le \text{matches threshold}$}
-            		\State confidence $\gets 0$
-            	\Else
-            		\State try find restricted affine transformation for features with \gls{RANSAC}
-            		\State $\psi \gets \text{number of inliers in \gls{RANSAC}}$
-            		\If{transformation found}
-            			\State confidence $\gets \frac{\psi}{8 + 0.3 \cdot n}$
-                        \State $P_{(i,j)} \gets$ restricted affine transformation
-            		\Else
-            			\State confidence $\gets 0$
-            		\EndIf
-            	\EndIf
-            \EndFor
-            \State matches $\gets (i,j)$ for matches with confidence $\ge 1.0$
-            \State $g \gets (grids, matches)$
-            \State $h \gets$ largest connected component in $g$
-            \State $t \gets$ maximum spanning tree in $h$
-            \State \Call{estimateFinalTransform}{$t$, $P_{(i,j)} \forall e \in \text{edges of } t$} \Comment{walk $t$ and compute transformations to global reference frame. See Algorithm~\ref{alg:estimatefinaltrans}.}
-        \EndProcedure
-    \end{algorithmic}
-\end{algorithm}
+@INPROCEEDINGS{ICP, 
+author={S. Rusinkiewicz and M. Levoy}, 
+booktitle={3-D Digital Imaging and Modeling, 2001. Proceedings. Third International Conference on}, 
+title={Efficient variants of the ICP algorithm}, 
+year={2001}, 
+pages={145-152}, 
+doi={10.1109/IM.2001.924423}, 
+month={},}
