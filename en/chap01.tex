@@ -2,6 +2,7 @@
 This section offers basic introduction to multiple state-of-the-art algorithms used in this work. This chapter starts with short explanation about what it is \gls{SLAM}. Then, it dives more deeply into Graph-based SLAM variant. Equally, important section \ref{MAP_REPRE} describes possible map representations. In next section \ref{Scan_reg} we introduce a selection of registration algorithms. At the end of this chapter \ref{subsec:analyses}, we will go over our reasons why there is need for this work and how to possibly improve current state-of-the-art in NDT based graph SLAM. 
 
 \section{SLAM problem definition}
+\label{sec:SLAM_def}
 Successfully solving \gls{SLAM} problem means to find location of robot in every time step and be able to create map at that time-stamp. In real world we deal with robot's sensors which have always some inherited noise. This means we are not able to fully say exact position of robot. This is main reason why to use probabilistic definition of problem. Robot moves through unknown space along trajectory expressed as variables $ \textbf{x}_{1:T} = \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. While moving robot is taking odometry measurements $ \textbf{u}_{1:T} = \{\textbf{u}_{1},...,\textbf{u}_{T}\}$ and perception of environment $ \textbf{z}_{1:T} = \{\textbf{z}_{1},...,\textbf{z}_{T}\}$ Solving SLAM than means finding out probability of the robot's trajectory $ \textbf{x}_{1:T}$ and a map \textbf{m} of local environment given all the measurements and initial pose $ \textbf{x}_{0}$:
 \begin{equation}
 p(\textbf{x}_{1:T}, \textbf{m}\: |\:  \textbf{z}_{1:T}, \textbf{u}_{1:T}, \textbf{x}_{0})
@@ -78,9 +79,28 @@ Other option is to use robust optimization engines, witch can identify outliers 
 
 
 \subsection{Optimization}
+Back-end receives graph with odometry edges and loop closure edges. The main task of back-end is to optimize this graph and return the most likely position of nodes. Popular method of optimization is to use the Gauss-Newton or the Levenberg-Marquardt algorithms. 
+
+To utilize these methods we first need to define our error function. We will use notation similar to one presented in section \ref{sec:SLAM_def}. Let $\textbf{x} = (\textbf{x}_{1},...,\textbf{x}_{T})^{T} $ be a vector of graph's nodes positions. Let $z_{i,j}$ to be a registration algorithm transformation between nodes $x_{i}$ and $x_{j}$. Let $\Omega_{i,j}$ be a information matrix of this transformation (information matrix is an inverse of covariance). Lastly let $\hat{z}_{i,j}$ be a estimate of registration transform received from initial configurations of nodes i and j.
+
+The log-likelihood of measurement $z_{i,j}$ is than defined as:
+\begin{equation}
+l_{i,j} = (\hat{z}_{i,j} - z_{i,j})^{T} \Omega_{i,j} (\hat{z}_{i,j} - z_{i,j}) 
+\end{equation}  
+where $(\hat{z}_{i,j} - z_{i,j})$ is a difference between expected measurement and real measurement. Now we can define out error function as
+
+\begin{equation}
+F(\textbf{x}_{1,T}) = \sum_{<i,j>\in G}^{} (\hat{z}_{i,j} - z_{i,j})^{T} \Omega_{i,j} (\hat{z}_{i,j} - z_{i,j}) 
+\end{equation}
+
+Our goal is to calculate such a $\textbf{x}$ that this function is minimal. More formaly we wan to find solution to
+\begin{equation}
+\bar{x}_{1,T} = argmin_{\textbf{x}} \ F(\textbf{x})
+\end{equation}
+
+ Information on how to minimize this function, calculate derivatives and how to exploit structure of the problem to get significant speed gains continue in reading in this tutorial \cite{GraphTutorial}.
 
 \newpage
-
 
 
 \section{Map representation}
