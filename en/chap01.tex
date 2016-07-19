@@ -1,25 +1,84 @@
 \chapter{Used algorithms and key concepts}
-This section offers basing introduction to multiple state-of-the-art algorithms used in this work. Good understanding of these concepts is crucial for full comprehension of section 3 \todo{ref}. 
+This section offers basic introduction to multiple state-of-the-art algorithms used in this work. This chapter starts with short explanation about what it is \gls{SLAM}. Then, it dives more deeply into Graph-based SLAM variant. Equally, important section \ref{MAP_REPRE} describes possible map representations. In next section \ref{Scan_reg} we introduce a selection of registration algorithms. At the end of this chapter \ref{subsec:analyses}, we will go over our reasons why there is need for this work and how to possibly improve current state-of-the-art in NDT based graph SLAM. 
 
 \section{SLAM problem definition}
 Successfully solving \gls{SLAM} problem means to find location of robot in every time step and be able to create map at that time-stamp. In real world we deal with robot's sensors which have always some inherited noise. This means we are not able to fully say exact position of robot. This is main reason why to use probabilistic definition of problem. Robot moves through unknown space along trajectory expressed as variables $ \textbf{x}_{1:T} = \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. While moving robot is taking odometry measurements $ \textbf{u}_{1:T} = \{\textbf{u}_{1},...,\textbf{u}_{T}\}$ and perception of environment $ \textbf{z}_{1:T} = \{\textbf{z}_{1},...,\textbf{z}_{T}\}$ Solving SLAM than means finding out probability of the robot's trajectory $ \textbf{x}_{1:T}$ and a map \textbf{m} of local environment given all the measurements and initial pose $ \textbf{x}_{0}$:
 \begin{equation}
 p(\textbf{x}_{1:T}, \textbf{m}\: |\:  \textbf{z}_{1:T}, \textbf{u}_{1:T}, \textbf{x}_{0})
 \end{equation}
-Odometry is usually acquired by robots wheel encoders or by incremental scan-matching. Odometry is represented in 2D by triple $(x,y,\theta)$ or by three dimensional transformation matrix. Perceptions of environment might come from different sources. In this work we expect distance measurements from laser scanner or kinect sensor. Initial pose can be interpreted as origin of coordinate system for global map. Representation of the map is more described in section \ref{MAP_REPRE}.
+Odometry is usually acquired by robots wheel encoders or by incremental scan-matching. Odometry is represented in 2D by triple $(x,y,\theta)$ or by three dimensional transformation matrix. Perceptions of environment might come from different sources. In this work we expect distance measurements from laser scanner or kinect sensor. Initial pose can be interpreted as origin of coordinate system for global map.The map can be represented as a set of unique landmarks or as a set of measurements integrated together. Some of these integration methods are presented in section \ref{MAP_REPRE}.
 
 \subsection{SLAM categories}
-\newpage
+Over the past decade reaserch has developed three distinctive categories of \gls{SLAM}. 
+
+First category is \gls{EKF} variant. It is based on \gls{KF}. The \gls{KF}  assume that probability density functions are Gaussian distributions and system is linear. The \gls{EKF} solves problems with non-linearity of robot pose model. Performance of \gls{EKF} strongly depends on quality of statistical model for noise in sensors and odometry. Unfortunately, these models are usually not available. A set of comparative tests for convergence and inconsistencies of \gls{EKF} is in work of \cite{EKF}.
+
+Another category is based on \gls{PF}. Current state of the robot is represented by set of weighted particles. This brings advantage of representing uncertainty through multi-modal distributions and dealing with non-Gaussian noise. \cite{FastSlam} proposed computationally efficient method based on \gls{PF} called FastSLAM. It uses particles to represent posterior probability of motion. In addition, each particle also holds K Kallman filters representing landmark positions. It was demonstrated that it is possible to calculate high precision maps utilizing FastSLAM. Inspired by FastSlam, a method based on Rao-Blackwellized Particle Filter is proposed in \cite{Rao-PF}. Derivations of this approach are still actively used in robotics today. 
+
+Last category is based on modeling state of the system by constructing robot's state graph and optimizing to find final robot position. This representation was first time used in work of \cite{LuMilios}. This technique was later improved by \cite{OlsonGS}. They have presented efficient optimization approach based on the scholastic gradient descent. It was able to correct even large graphs. Later multiple authors improved \gls{SLAM} optimization by adding hierarchies to large graphs or adding robustness to optimization process. Graph based model of SLAM is still in active research.       
+
 \subsection{Graph-based SLAM}
 A graph-based SLAM solves SLAM problem by constructing graph representation of the problem. This graph is commonly called a pose graph. Nodes of the graph represent potential poses of robot at certain time stamp $ T $. Therefore, nodes are representing our trajectory $ \{\textbf{x}_{1},...,\textbf{x}_{T}\} $. Nodes also hold state of the current map. Edges in the graph represent possible spatial transformation between nodes. Edge is generated out of noisy sensor data. Therefore, we need to model uncertainty of this movement. It is represented by probability distribution and included in the edge. Generation of constrains is done by algorithm's front-end. It creates them either from odometry $  \textbf{u}_{T} $ or by measurement data  $ \textbf{z}_{T} $ registration. Once the graph is completed ,it is optimized by algorithms back-end. Result of this process is the most likely position of all nodes in the graph.
 
 \subsection {Pose graph creation}
 \label{Pose_graph_creation}
-Loop closure edge generation 
-\newpage
+Process of graph creation operates in \gls{SLAM}'s front-end. First step is to receive robot's movement. This transformation may come from wheels' encoders, visual odometry from camera or \gls{IMU}. Front-end also receives a covariance of the transformation based on noise model of source sensor. From transformation and covariance we can create an edge for the graph. This edge type is usually called odometry edge. Consecutive odometry measurements creates long chain of edges in graph.
 
-\newpage
+Nodes represent current robot position. Therefore, they should have some initial estimate. This initial guess may come from concatenation of transformations in odometry edges. Another method is to use propagation of transformation through minimum spanning tree constructed out of full graph. 
+
+Second type, represents edges from nodes to landmarks. A landmark is and unique descriptors of the place. When landmark is detected, front-end creates node representing this place and landmark edge connecting it with graph. Edge carries transformation between current node and landmark. If landmark already exists than created edge might help to optimize correct pose estimate of other nodes.
+
+   
+Third common type of edges are loop closure edges. These edges usually connect two nodes, which share same perception of the world. Aligning these perceptions yields virtual transformation between these nodes. A covariance needs to be provided from alignment process and depends on used technique. Loop closure edge usually exists if we have revisited same place again. This is crucial information for \gls{SLAM}'s back-end. Based on it optimalization finds out if odometry edges reliably represent reality and adjust pose estimates.
+
+\subsection {Loop closure creation}
+First step of correct loop closure creation is to identify all nodes ,which might have overlapping measurements. Given pose $a$ we find all nodes $b_{1} ... b_{n}$ from graph whose sensor measurements overlap pose $a$. This could be determined by finding relative position of nodes $a$ and $b_{i}$. One possible method how to determine is to use Dijkstra projection mentioned in \cite{Olson2009Loop}. Dijkstra projection starts at node $a$ and concatenate covariances and transformation along the minimum uncertainty path. This path is selected based on determinant of covariance matrix. Small covariance matrix has lower determinant than covariance matrix with large numbers. Minimum uncertainty selection guaranties that algorithm will get to the target $b_{i}$ with maximum precision. Concatenation of covariances is done based on equation:
+\begin{equation}
+P_{a+b} = J_{a} P_{a} J_{a}^{T} + J_{b} P_{b} J_{b}^{T}
+\end{equation}   
+\begin{equation}
+J_{a} = 
+\begin{pmatrix}
+1 & 0 & -x\sin\theta -y\cos\theta  \\
+0 & 1 & x\cos \theta  - y\sin\theta  \\
+0 & 0 & 1
+\end{pmatrix} 
+J_{b} = 
+\begin{pmatrix}
+\cos\theta & -\sin\theta & 0  \\
+\sin\theta & \cos\theta & 0\\
+0 & 0 & 1
+\end{pmatrix} 
+\end{equation} 
+where $P_{a}$ is acumulated covariance, $P_{b}$ is aditional covariance, Jaccobian $J_{a}$ use parameters from transformation $(x,y,\theta)_{a}$ and $J_{b}$ from  $(x,y,\theta)_{b}$ Concatenation of transformations is defined as:
+\begin{equation}
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}_{a+b}
+=
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}_{a}
++ R(\theta_{a}) 
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}_{b}
+\end{equation}
+\begin{equation}
+\theta_{a+b} = \theta_{a} + \theta_{b}
+\end{equation}
+where $R(\theta_{a})$ is rotation matrix created from angle $\theta_{a}$.
+
+After successful generation of overlapping nodes, every potential pair needs to be tested by registration algorithm. This algorithm needs to be robust enough to reject as many incorrect pairs as possible. If matching is possible it should align measurements and return best transformation. More about this type of algorithms can be found in section \ref{Scan_reg}.
+
+Even the best registration algorithm may fail and return erroneous measurement. Loop closure process needs to reject these errors. One solution is to use method proposed by \cite{Olson2009Loop}. In this approach we first group loop closure edges into groups based on their topological distance from each other. Later we validate every cluster against internal inconsistencies. Edges marked as inconsistent are deleted from system. 
+
+Other option is to use robust optimization engines, witch can identify outliers in the form of error edges. Comparison of known outliers rejection methods was done by \cite{RobustOpt}. 
+
+
+
 \subsection{Optimization}
+
 \newpage
 
 

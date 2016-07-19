@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -20,6 +20,28 @@ Yang Chen and G{\'e}rard Medioni.
 \newblock \emph{Image and vision computing}, 10\penalty0 (3):\penalty0
   145--155, 1992.
 
+\bibitem[Grisetti et~al.(2007)Grisetti, Stachniss, and Burgard]{Rao-PF}
+G.~Grisetti, C.~Stachniss, and W.~Burgard.
+\newblock Improved techniques for grid mapping with rao-blackwellized particle
+  filters.
+\newblock \emph{Trans. Rob.}, 23\penalty0 (1):\penalty0 34--46, February 2007.
+\newblock ISSN 1552-3098.
+\newblock \doi{10.1109/TRO.2006.889486}.
+
+\bibitem[Huang and Dissanayake(2007)]{EKF}
+S.~Huang and G.~Dissanayake.
+\newblock Convergence and consistency analysis for extended kalman filter based
+  slam.
+\newblock \emph{IEEE Transactions on Robotics}, 23\penalty0 (5):\penalty0
+  1036--1049, Oct 2007.
+\newblock ISSN 1552-3098.
+\newblock \doi{10.1109/TRO.2007.903811}.
+
+\bibitem[Lu and Milios(1997)]{LuMilios}
+Feng Lu and Evangelos Milios.
+\newblock Globally consistent range scan alignment for environment mapping.
+\newblock \emph{Autonomous robots}, 4\penalty0 (4):\penalty0 333--349, 1997.
+
 \bibitem[Magnusson et~al.(2015)Magnusson, Vaskevicius, Stoyanov, Pathak, and
   Birk]{NDTcomparative}
 M.~Magnusson, N.~Vaskevicius, T.~Stoyanov, K.~Pathak, and A.~Birk.
@@ -34,11 +56,33 @@ Martin Magnusson.
   representation for registration, surface analysis, and loop detection.
 \newblock 2009.
 
-\bibitem[Olson(2009)]{olson2009real}
+\bibitem[Montemerlo et~al.(2002)Montemerlo, Thrun, Koller, and
+  Wegbreit]{FastSlam}
+Michael Montemerlo, Sebastian Thrun, Daphne Koller, and Ben Wegbreit.
+\newblock Fastslam: A factored solution to the simultaneous localization and
+  mapping problem.
+\newblock In \emph{In Proceedings of the AAAI National Conference on Artificial
+  Intelligence}, pages 593--598. AAAI, 2002.
+
+\bibitem[Olson(2009{\natexlab{a}})]{Olson2009Loop}
+Edwin Olson.
+\newblock Recognizing places using spectrally clustered local matches.
+\newblock \emph{Robot. Auton. Syst.}, 57\penalty0 (12):\penalty0 1157--1172,
+  December 2009{\natexlab{a}}.
+\newblock ISSN 0921-8890.
+\newblock \doi{10.1016/j.robot.2009.07.021}.
+
+\bibitem[Olson et~al.(2006)Olson, Leonard, and Teller]{OlsonGS}
+Edwin Olson, John Leonard, and Seth Teller.
+\newblock Fast iterative alignment of pose graphs with poor initial estimates.
+\newblock In \emph{Proceedings 2006 IEEE International Conference on Robotics
+  and Automation, 2006. ICRA 2006.}, pages 2262--2269. IEEE, 2006.
+
+\bibitem[Olson(2009{\natexlab{b}})]{olson2009real}
 Edwin~B Olson.
 \newblock Real-time correlative scan matching.
 \newblock In \emph{Robotics and Automation, 2009. ICRA'09. IEEE International
-  Conference on}, pages 4387--4393. IEEE, 2009.
+  Conference on}, pages 4387--4393. IEEE, 2009{\natexlab{b}}.
 
 \bibitem[Pomerleau et~al.(2013)Pomerleau, Colas, Siegwart, and
   Magnenat]{pomerleau2013comparing}
@@ -73,6 +117,14 @@ Todor Stoyanov, Martin Magnusson, Henrik Andreasson, and Achim~J Lilienthal.
 \newblock \emph{The International Journal of Robotics Research}, 31\penalty0
   (12):\penalty0 1377--1393, 2012.
 \newblock \doi{10.1177/0278364912460895}.
+
+\bibitem[Sünderhauf and Protzel(2013)]{RobustOpt}
+N.~Sünderhauf and P.~Protzel.
+\newblock Switchable constraints vs. max-mixture models vs. rrr - a comparison
+  of three approaches to robust pose graph slam.
+\newblock In \emph{Robotics and Automation (ICRA), 2013 IEEE International
+  Conference on}, pages 5198--5203, May 2013.
+\newblock \doi{10.1109/ICRA.2013.6631320}.
 
 \bibitem[Ulas and Temeltas(2011)]{ulas20113d}
 Cihan Ulas and Hakan Temeltas.

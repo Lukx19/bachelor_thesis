@@ -11,47 +11,46 @@ A level-1 auxiliary file: epilog.aux
 A level-1 auxiliary file: bibliography.aux
 The style file: plainnat.bst
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for "Andel07"
 Warning--empty journal in magnusson09
-You've used 10 entries,
+You've used 17 entries,
             2773 wiz_defined-function locations,
-            681 strings with 7250 characters,
-and the built_in function-call counts, 5904 in all, are:
-= -- 549
-> -- 296
-< -- 11
-+ -- 101
-- -- 90
-* -- 472
-:= -- 840
-add.period$ -- 36
-call.type$ -- 10
-change.case$ -- 60
-chr.to.int$ -- 9
-cite$ -- 21
-duplicate$ -- 274
-empty$ -- 488
-format.name$ -- 106
-if$ -- 1296
-int.to.chr$ -- 2
+            738 strings with 8674 characters,
+and the built_in function-call counts, 9788 in all, are:
+= -- 933
+> -- 468
+< -- 18
++ -- 160
+- -- 141
+* -- 785
+:= -- 1394
+add.period$ -- 66
+call.type$ -- 17
+change.case$ -- 98
+chr.to.int$ -- 15
+cite$ -- 35
+duplicate$ -- 457
+empty$ -- 818
+format.name$ -- 170
+if$ -- 2153
+int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 10
-newline$ -- 63
-num.names$ -- 40
-pop$ -- 125
+missing$ -- 17
+newline$ -- 105
+num.names$ -- 68
+pop$ -- 195
 preamble$ -- 1
-purify$ -- 50
+purify$ -- 81
 quote$ -- 0
-skip$ -- 229
+skip$ -- 371
 stack$ -- 0
-substring$ -- 336
-swap$ -- 76
-text.length$ -- 6
+substring$ -- 560
+swap$ -- 123
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 110
+type$ -- 187
 warning$ -- 1
-while$ -- 48
+while$ -- 84
 width$ -- 0
-write$ -- 147
-(There were 2 warnings)
+write$ -- 254
+(There was 1 warning)

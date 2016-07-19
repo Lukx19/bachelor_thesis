@@ -4,39 +4,41 @@
 \contentsline {subsection}{\numberline {1.1.1}SLAM categories}{4}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}Graph-based SLAM}{5}{subsection.1.1.2}
 \contentsline {subsection}{\numberline {1.1.3}Pose graph creation}{5}{subsection.1.1.3}
-\contentsline {subsection}{\numberline {1.1.4}Optimization}{6}{subsection.1.1.4}
-\contentsline {section}{\numberline {1.2}Map representation}{7}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}NDT grid}{8}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}NDT-OM extension}{9}{subsection.1.2.2}
-\contentsline {section}{\numberline {1.3}Scan registration}{10}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}NDT registration}{11}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}D2D-NDT registration}{13}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}ICP}{13}{subsection.1.3.3}
-\contentsline {subsection}{\numberline {1.3.4}Correlative scan registration}{14}{subsection.1.3.4}
-\contentsline {section}{\numberline {1.4}NDT graph slam analyses}{15}{section.1.4}
-\contentsline {chapter}{\numberline {2}System overview}{16}{chapter.2}
-\contentsline {section}{\numberline {2.1}System architecture}{16}{section.2.1}
-\contentsline {section}{\numberline {2.2}NDT frame}{17}{section.2.2}
-\contentsline {section}{\numberline {2.3}(Robust D2D-NDT registration)}{18}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Results}{18}{subsection.2.3.1}
-\contentsline {section}{\numberline {2.4}Running window}{19}{section.2.4}
-\contentsline {section}{\numberline {2.5}Loop closures}{20}{section.2.5}
-\contentsline {section}{\numberline {2.6}Slam back-end}{21}{section.2.6}
-\contentsline {section}{\numberline {2.7}Main algorithm}{22}{section.2.7}
-\contentsline {chapter}{\numberline {3}Implementation and API}{23}{chapter.3}
-\contentsline {section}{\numberline {3.1}Used libraries}{23}{section.3.1}
-\contentsline {section}{\numberline {3.2}NDTGrid2D}{23}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}VoxelGrid}{23}{subsection.3.2.1}
-\contentsline {section}{\numberline {3.3}Registration algorithms}{23}{section.3.3}
-\contentsline {section}{\numberline {3.4}NDTCell}{23}{section.3.4}
-\contentsline {section}{\numberline {3.5}Algorithm API}{23}{section.3.5}
-\contentsline {section}{\numberline {3.6}Graph SLAM API}{23}{section.3.6}
-\contentsline {section}{\numberline {3.7}ROS API}{23}{section.3.7}
-\contentsline {chapter}{\numberline {4}Evaluation}{24}{chapter.4}
-\contentsline {section}{\numberline {4.1}Datasets}{24}{section.4.1}
-\contentsline {section}{\numberline {4.2}Results}{24}{section.4.2}
-\contentsline {chapter}{Conclusion}{25}{chapter*.7}
-\contentsline {chapter}{Bibliography}{26}{chapter*.8}
-\contentsline {chapter}{List of Figures}{27}{chapter*.9}
-\contentsline {chapter}{List of Abbreviations}{28}{section*.10}
-\contentsline {chapter}{Attachments}{29}{chapter*.12}
+\contentsline {subsection}{\numberline {1.1.4}Loop closure creation}{6}{subsection.1.1.4}
+\contentsline {subsection}{\numberline {1.1.5}Optimization}{7}{subsection.1.1.5}
+\contentsline {section}{\numberline {1.2}Map representation}{8}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}NDT grid}{9}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}NDT-OM extension}{10}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Scan registration}{11}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}NDT registration}{12}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}D2D-NDT registration}{14}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}ICP}{14}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}Correlative scan registration}{15}{subsection.1.3.4}
+\contentsline {section}{\numberline {1.4}NDT graph slam analyses}{16}{section.1.4}
+\contentsline {chapter}{\numberline {2}System overview}{17}{chapter.2}
+\contentsline {section}{\numberline {2.1}System architecture}{17}{section.2.1}
+\contentsline {section}{\numberline {2.2}NDT frame}{18}{section.2.2}
+\contentsline {section}{\numberline {2.3}(Robust D2D-NDT registration)}{19}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Results}{19}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.4}Running window}{20}{section.2.4}
+\contentsline {section}{\numberline {2.5}Loop closures}{21}{section.2.5}
+\contentsline {section}{\numberline {2.6}Slam back-end}{22}{section.2.6}
+\contentsline {section}{\numberline {2.7}Main algorithm}{23}{section.2.7}
+\contentsline {chapter}{\numberline {3}Implementation and API}{24}{chapter.3}
+\contentsline {section}{\numberline {3.1}Used libraries}{24}{section.3.1}
+\contentsline {section}{\numberline {3.2}NDTGrid2D}{24}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}VoxelGrid}{24}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.3}Registration algorithms}{24}{section.3.3}
+\contentsline {section}{\numberline {3.4}NDTCell}{24}{section.3.4}
+\contentsline {section}{\numberline {3.5}Algorithm API}{24}{section.3.5}
+\contentsline {section}{\numberline {3.6}Graph SLAM API}{24}{section.3.6}
+\contentsline {section}{\numberline {3.7}ROS API}{24}{section.3.7}
+\contentsline {chapter}{\numberline {4}Comparison to SLAM implementation in ROS}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Dataset}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}GMapping}{25}{section.4.2}
+\contentsline {section}{\numberline {4.3}Hector SLAM}{25}{section.4.3}
+\contentsline {section}{\numberline {4.4}NDT-GraphSLAM}{25}{section.4.4}
+\contentsline {chapter}{Conclusion}{26}{chapter*.7}
+\contentsline {chapter}{List of Figures}{29}{chapter*.9}
+\contentsline {chapter}{List of Abbreviations}{30}{section*.10}
+\contentsline {chapter}{Attachments}{31}{chapter*.12}
