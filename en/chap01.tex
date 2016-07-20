@@ -129,7 +129,7 @@ P_{i} = \dfrac{1}{n-1}\sum_{k=1}^{n}(x_{k}-\mu_{i})(x_{k}-\mu_{i})^{t}
 \end{equation} 
 NDT grid was than used for registration.Originally proposed grid could be updated with new laser scans only by keeping used points and recalculating all cells again. This has changed with proposed recursive covariance update step by \cite{Saarinen13}. Their update step offers way how to fuse in new measurements. First it calculate normal distributions for added points. In second step, it merges old covariances with new one.
 
-Consider two sets of measurement $\{x_{i}\}^{m}_{i=1}$ and $\{y_{i}\}^{n}_{i=1}$ than formula for mean calculation is in equation \eqref{NDT_mean_RCU}. Recursive update for covariance (RCU) is in equation \eqref{NDT_covar_RCU}
+Consider two sets of measurement $\{x_{i}\}^{m}_{i=1}$ and $\{y_{i}\}^{n}_{i=1}$ than formula for mean calculation is in equation \eqref{NDT_mean_RCU}. \gls{RCU} is in equation \eqref{NDT_covar_RCU}
 \begin{equation}
 T_{x} = \sum_{i =1}^{m}x_{i} \quad
 T_{y} = \sum_{i =1}^{n}y_{i} \quad
@@ -168,7 +168,7 @@ M, & n+m \geq M
 Parameter M modifies how fast we let RCU replace old measurements by new one. Small value of M makes adaptation faster and big M keeps weight of older data higher. This cause to have new data making smaller impact on result of process. 
 
 \subsection{NDT-OM extension}
-NDT grids offers good compromise between space and precision, but it lacks information about occupied space and unoccupied space. This is crucial for planning algorithms. This functionality was added to NDT by \cite{Saarinen13} and later improved by same authors in later work \cite{Saarinen213}. Every cell in NDT-OM is represented with parameters $c_{i}=\{\mu_{i}, p_{i}, N_{i},p_{i}\}$, where $\mu_{i}$ and $P_{i}$ are parameters of estimated normal distribution, $N_{i}$ is number of points in cell and $p_{i}$ is probability of the cell being occupied. 
+NDT grids offers good compromise between space and precision, but it lacks information about occupied space and unoccupied space. This is crucial for planning algorithms. This functionality was added to NDT by \cite{Saarinen13} and later improved by same authors in later work \cite{Saarinen213}. Every cell in \gls{NDT-OM} is represented with parameters $c_{i}=\{\mu_{i}, p_{i}, N_{i},p_{i}\}$, where $\mu_{i}$ and $P_{i}$ are parameters of estimated normal distribution, $N_{i}$ is number of points in cell and $p_{i}$ is probability of the cell being occupied. 
 
 Calculation of occupancy parameter is done by ray-tracing. Consider that we have current map $m_{x}$. We have calculated new NDT map $m_{y}$ from incoming distance measurements. Both maps needs to be in the same coordinate system. Ray-tracing starts at current robot position in map $m_{x}$. End point of ray-tracing is value of mean from one of the cells in new map $m_{y}$. Program visits every cell along the line and updates covariance. It is important to visit every cell just once. When is ray-tracing over we merge in all cells from $m_{y}$ into $m_{x}$ with RCU update rule.
 
@@ -311,7 +311,7 @@ The iterative closest point (\gls{ICP}) algorithm was first introduced by \cite{
 \newpage
 \subsection{Correlative scan registration}
 \label{subsec:Corr}
-Correlative scan registration is algorithm presented by \cite{olson2009real}. This method was developed to robustly solve registration problem. It does not require any initial guess. Therefore, it is possible to use this method for purposes of loop closure registration.
+Correlative scan registration is algorithm presented by \cite{olson2009real}. This method was developed to robustly solve registration problem. It does not require any initial guess. Therefore, it is possible to use it for loop closure registration.
 
  The algorithm requires two point clouds. Target point cloud is used for generation of fast look up table filled with bit values. It is created by separating points from target cloud into individual cells. Every cell which has some points in it is marked as occupied. After this step we have a table with value 1 in cells with some points and value 0 in cells without points. In next step we add sensor noise to the table. As a function of our noise we use radially symmetric kernel. 
  \begin{equation}
@@ -327,7 +327,7 @@ Correlative scan registration is algorithm presented by \cite{olson2009real}. Th
  \end{equation}
  where $K_{i,j}$ is one element of kernel; $\sqrt{(i r)^{2} + (j r)^{2}}$ is euclidean distance from center of the kernel to the element $i,j$ with cell size parameter $r$. Standard deviation of sensor nose is abbreviated by $\sigma$ and $\eta$ is kernels max value.
 
- The Kernel overlaps over every occupied cell in the table. If value of kernel is higher than value in table. Table is updated with the kernels value. Generated smoothing can be seen in figure \ref{fig:Corr_smooth}.
+ The Kernel overlaps over every occupied cell in the table. If value of kernel is higher than value in table. Table is updated with the kernels value. Generated smoothing can be seen in figure \ref{fig:Corr_smooth}. \todo{figure smoothing or remove}
  
  This algorithm is avoiding initial guess by trying all possible rotations and translations of source cloud. Every point of transformed source cloud is mapped into certain cell of look up table. The total score of transformed cloud is sum of all mapped cells scores. Algorithm usually tries rotations and translations from selected range. Transformation with the best score is the most probable transformation.
  
@@ -336,7 +336,19 @@ Correlative scan registration is algorithm presented by \cite{olson2009real}. Th
  Real speed improvements offers usage of two layer architecture of look up tables. The first table has coarse resolution. This table is used for initial estimation on the whole range of selected rotations and translations. The transformations with best score are used in the second round. From every good transformation is generated search space voxel. Origin of voxel is taken from transformation. Size of voxel is cell size from coarse table. Search voxels are evaluated on look up table with fine resolution. Search space is this time limited to search voxel and initial transformation is taken from origin of voxel. The best result is our solution. By this process computation time drops rapidly as show in work of \cite{olson2009real}.     
     
 \newpage
-\section{NDT graph slam analyses}
+\section{NDT graph based SLAM motivation}
 \label{subsec:analyses}
+In previous sections we have presented several algorithms which are currently considered state-of-the-art. After this research we have noticed that there are no implementation of \gls{NDT} based graph \gls{SLAM} in \gls{ROS}. In our advantage, some algorithms needed for this development are already well documented and tested in reaserch works of other authors. This works should build on this foundation. 
 
+In the conclusion of work by \cite{NDTOMFusion}, author described that scanmatching based on \gls{NDT} registration can provide very good result in mapping process with use of \gls{NDT-OM}. They have proven this by mapping large area with only use of global map solely created by modified method of  incremental scanmatching. They have noted that even though results are very accurate, there is need for solution with loop closure mechanism to improve results. In this work, they have mapped real life factory datasets with dynamic entities. \gls{NDT-OM} proven to be reliable way of removing dynamic objects and updating map. \gls{NDT} maps have in general advantage of reliable registration performance on coarser grid. Which is valuable trait for reduction of memory consumption. At the same type it holds occupancy information which can be used by planning and exploring algorithms.
+
+It is necessary to find solution to the way how to represent the map. In previous works there was always one global map. Iterative scanmatching than used this map for more precise alignment. This needs to be reanalyzed, because with use of pose graph we need a way how to reorganize map based on optimization changes in \gls{SLAM}'s back-end.  
+
+These changes to pose graph happen after valid loop closure detection. To perform alignment we need algorithm which can align two grids without information about initial guess. In addition, this algorithm should offer a way how to grade registration based on some quality metric. This should reject edges which cover completely different location.
+
+Lastly, it needs to be implemented in a way that on-line processing of real datasets is possible. It needs to have standard \gls{ROS} interface commonly found in other \gls{SLAM}. It should use standard libraries available in \gls{ROS}.
+
+Final result of this works should be working implementation of 2D graph based \gls{SLAM} on NDT maps with easy use inside of \gls{ROS} ecosystem. 
+
+     
 

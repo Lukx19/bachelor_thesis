@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{19}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -115,6 +115,15 @@ J.~Saarinen, T.~Stoyanov, H.~Andreasson, and A.~J. Lilienthal.
 \newblock In \emph{2013 IEEE/RSJ International Conference on Intelligent Robots
   and Systems}, pages 4694--4701, Nov 2013{\natexlab{b}}.
 \newblock \doi{10.1109/IROS.2013.6697032}.
+
+\bibitem[Stoyanov et~al.(2013)Stoyanov, Saarinen, Andreasson, and
+  Lilienthal]{NDTOMFusion}
+T.~Stoyanov, J.~Saarinen, H.~Andreasson, and A.~J. Lilienthal.
+\newblock Normal distributions transform occupancy map fusion: Simultaneous
+  mapping and tracking in large scale dynamic environments.
+\newblock In \emph{2013 IEEE/RSJ International Conference on Intelligent Robots
+  and Systems}, pages 4702--4708, Nov 2013.
+\newblock \doi{10.1109/IROS.2013.6697033}.
 
 \bibitem[Stoyanov et~al.(2012)Stoyanov, Magnusson, Andreasson, and
   Lilienthal]{Stoyanov01102012}
