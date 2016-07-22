@@ -1,5 +1,6 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Diagram of graph based SLAM on NDT maps}}{18}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Imiges with alignemt. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.}}{25}{figure.2.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

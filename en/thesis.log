@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.13)  21 JUL 2016 00:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.7.13)  22 JUL 2016 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1042,14 +1042,13 @@ Package: supertabular 2004/02/20 v4.1e the supertabular environment
 ty
 Package: glossary-tree 2016/06/09 v4.25 (NLCT)
 \glstreeindent=\skip75
-)) (/usr/local/texlive/2016/texmf-dist/tex/generic/bibtex/apalike.sty)
+))
 \glswrite=\write5
 \glo@acronym@file=\write6
 \openout6 = `thesis.acn'.
 
 Package glossaries Info: Writing glossary file thesis.acn on input line 55.
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -1260,7 +1259,7 @@ LaTeX Info: Redefining \nameref on input line 118.
  (./title.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
-<../img/logo.pdf, id=175, 371.3875pt x 366.36874pt>
+<../img/logo.pdf, id=191, 371.3875pt x 366.36874pt>
 File: ../img/logo.pdf Graphic file (type pdf)
  <use ../img/logo.pdf>
 Package pdftex.def Info: ../img/logo.pdf used on input line 23.
@@ -1320,243 +1319,239 @@ Chapter 1.
 
 
 ] [5] [6] [7]
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 117--117
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 119--119
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
 
-Overfull \hbox (4.62054pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.62054pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 pancy |
  []
 
 
-Overfull \hbox (4.94693pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.94693pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 point- |
  []
 
 
-Overfull \hbox (1.68307pt too wide) in paragraph at lines 117--117
+Overfull \hbox (1.68307pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 cloud |
  []
 
 
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 117--117
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 119--119
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
 
-Overfull \hbox (4.62054pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.62054pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 pancy |
  []
 
 
-Overfull \hbox (4.94693pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.94693pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 point- |
  []
 
 
-Overfull \hbox (1.68307pt too wide) in paragraph at lines 117--117
+Overfull \hbox (1.68307pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 cloud |
  []
 
 
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 117--117
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 119--119
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
 
-Overfull \hbox (4.62054pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.62054pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 pancy |
  []
 
 
-Overfull \hbox (4.94693pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.94693pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 point- |
  []
 
 
-Overfull \hbox (1.68307pt too wide) in paragraph at lines 117--117
+Overfull \hbox (1.68307pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 cloud |
  []
 
 
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 117--117
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 119--119
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
 
-Overfull \hbox (4.62054pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.62054pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 pancy |
  []
 
 
-Overfull \hbox (4.94693pt too wide) in paragraph at lines 117--117
+Overfull \hbox (4.94693pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 point- |
  []
 
 
-Overfull \hbox (1.68307pt too wide) in paragraph at lines 117--117
+Overfull \hbox (1.68307pt too wide) in paragraph at lines 119--119
 \OT1/cmr/m/n/12 cloud |
  []
 
 [8] [9]
-Overfull \hbox (5.5997pt too wide) in paragraph at lines 176--176
+Overfull \hbox (5.5997pt too wide) in paragraph at lines 178--178
 [][][][]\OT1/cmr/m/n/12 pridat |
  []
 
 
-Overfull \hbox (1.0303pt too wide) in paragraph at lines 176--176
+Overfull \hbox (1.0303pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 obra- |
  []
 
 
-Overfull \hbox (33.66885pt too wide) in paragraph at lines 176--176
+Overfull \hbox (33.66885pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 rautracingu  |
  []
 
 
-Overfull \hbox (5.5997pt too wide) in paragraph at lines 176--176
+Overfull \hbox (5.5997pt too wide) in paragraph at lines 178--178
 [][][][]\OT1/cmr/m/n/12 pridat |
  []
 
 
-Overfull \hbox (1.0303pt too wide) in paragraph at lines 176--176
+Overfull \hbox (1.0303pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 obra- |
  []
 
 
-Overfull \hbox (33.66885pt too wide) in paragraph at lines 176--176
+Overfull \hbox (33.66885pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 rautracingu  |
  []
 
 
-Overfull \hbox (5.5997pt too wide) in paragraph at lines 176--176
+Overfull \hbox (5.5997pt too wide) in paragraph at lines 178--178
 [][][][]\OT1/cmr/m/n/12 pridat |
  []
 
 
-Overfull \hbox (1.0303pt too wide) in paragraph at lines 176--176
+Overfull \hbox (1.0303pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 obra- |
  []
 
 
-Overfull \hbox (33.66885pt too wide) in paragraph at lines 176--176
+Overfull \hbox (33.66885pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 rautracingu  |
  []
 
 
-Overfull \hbox (5.5997pt too wide) in paragraph at lines 176--176
+Overfull \hbox (5.5997pt too wide) in paragraph at lines 178--178
 [][][][]\OT1/cmr/m/n/12 pridat |
  []
 
 
-Overfull \hbox (1.0303pt too wide) in paragraph at lines 176--176
+Overfull \hbox (1.0303pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 obra- |
  []
 
 
-Overfull \hbox (33.66885pt too wide) in paragraph at lines 176--176
+Overfull \hbox (33.66885pt too wide) in paragraph at lines 178--178
 \OT1/cmr/m/n/12 rautracingu  |
  []
 
 [10]
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 206--206
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 208--208
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
 
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 206--206
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 208--208
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
 
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 206--206
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 208--208
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
 
-Overfull \hbox (10.1691pt too wide) in paragraph at lines 206--206
+Overfull \hbox (10.1691pt too wide) in paragraph at lines 208--208
 [][][][]\OT1/cmr/m/n/12 picture |
  []
 
-[11] [12]
+[11]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 246.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 274.
+put line 248.
+ [12]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 276.
 
  (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 274.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 276.
 
 [13] [14]
-Overfull \hbox (3.20665pt too wide) in paragraph at lines 314--315
-\OT1/cmr/m/n/12 Correlative scan reg-is-tra-tion is al-go-rithm pre-sented by [
-]Ol-son[] [[]2009b[]]. This method|
- []
-
 
 LaTeX Warning: Reference `fig:Corr_smooth' on page 15 undefined on input line 3
-30.
+33.
 
 
-Overfull \hbox (2.98862pt too wide) in paragraph at lines 330--330
+Overfull \hbox (2.98862pt too wide) in paragraph at lines 333--333
 [][][][]\OT1/cmr/m/n/12 figure |
  []
 
 
-Overfull \hbox (15.78293pt too wide) in paragraph at lines 330--330
+Overfull \hbox (15.78293pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 smooth- |
  []
 
 
-Overfull \hbox (0.70392pt too wide) in paragraph at lines 330--330
+Overfull \hbox (0.70392pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 move  |
  []
 
 
-Overfull \hbox (2.98862pt too wide) in paragraph at lines 330--330
+Overfull \hbox (2.98862pt too wide) in paragraph at lines 333--333
 [][][][]\OT1/cmr/m/n/12 figure |
  []
 
 
-Overfull \hbox (15.78293pt too wide) in paragraph at lines 330--330
+Overfull \hbox (15.78293pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 smooth- |
  []
 
 
-Overfull \hbox (0.70392pt too wide) in paragraph at lines 330--330
+Overfull \hbox (0.70392pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 move  |
  []
 
 
-Overfull \hbox (2.98862pt too wide) in paragraph at lines 330--330
+Overfull \hbox (2.98862pt too wide) in paragraph at lines 333--333
 [][][][]\OT1/cmr/m/n/12 figure |
  []
 
 
-Overfull \hbox (15.78293pt too wide) in paragraph at lines 330--330
+Overfull \hbox (15.78293pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 smooth- |
  []
 
 
-Overfull \hbox (0.70392pt too wide) in paragraph at lines 330--330
+Overfull \hbox (0.70392pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 move  |
  []
 
 
-Overfull \hbox (2.98862pt too wide) in paragraph at lines 330--330
+Overfull \hbox (2.98862pt too wide) in paragraph at lines 333--333
 [][][][]\OT1/cmr/m/n/12 figure |
  []
 
 
-Overfull \hbox (15.78293pt too wide) in paragraph at lines 330--330
+Overfull \hbox (15.78293pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 smooth- |
  []
 
 
-Overfull \hbox (0.70392pt too wide) in paragraph at lines 330--330
+Overfull \hbox (0.70392pt too wide) in paragraph at lines 333--333
 \OT1/cmr/m/n/12 move  |
  []
 
@@ -1569,19 +1564,42 @@ Chapter 2.
 
 
 
-] <../img/algorithm_runtime.png, id=467, 695.59875pt x 803.0pt>
+] <../img/algorithm_runtime.png, id=453, 695.59875pt x 803.0pt>
 File: ../img/algorithm_runtime.png Graphic file (type png)
 
 <use ../img/algorithm_runtime.png>
 Package pdftex.def Info: ../img/algorithm_runtime.png used on input line 22.
 (pdftex.def)             Requested size: 284.52756pt x 328.4602pt.
  [18 <../img/algorithm_runtime.png>] [19]
-[20] [21] [22])
+[20] [21] [22] [23] <../img/good_align.png, id=500, 145.0234pt x 61.63495pt>
+File: ../img/good_align.png Graphic file (type png)
+
+<use ../img/good_align.png>
+Package pdftex.def Info: ../img/good_align.png used on input line 135.
+(pdftex.def)             Requested size: 426.79134pt x 181.41425pt.
+
+<../img/bad_align.png, id=501, 145.0234pt x 61.63495pt>
+File: ../img/bad_align.png Graphic file (type png)
+
+<use ../img/bad_align.png>
+Package pdftex.def Info: ../img/bad_align.png used on input line 136.
+(pdftex.def)             Requested size: 426.79134pt x 181.41425pt.
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 135--137
+ [][] |
+ []
+
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 135--137
+ [] |
+ []
+
+[24] [25 <../img/good_align.png> <../img/bad_align.png>])
 \openout2 = `chap03.aux'.
 
  (./chap03.tex
 Chapter 3.
-) [23
+) [26
 
 
 
@@ -1590,36 +1608,36 @@ Chapter 3.
 
  (./chap04.tex
 Chapter 4.
-) [24
+) [27
 
 
 
 ]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [25
+ (./epilog.tex) [28
 
 
 
 ]
 \openout2 = `bibliography.aux'.
 
- (./bibliography.tex (./thesis.bbl [26
+ (./bibliography.tex (./thesis.bbl [29
 
 
 
-])) [27]
+])) [30]
 (./thesis.lof)
 \tf@lof=\write9
 \openout9 = `thesis.lof'.
 
- (./thesis.acr [28
+ (./thesis.acr [31
 
 
-]) [29
+]) [32
 
 
-] [30
+] [33
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 162.
@@ -1630,20 +1648,20 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 162.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 162.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 162.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 335190EFA51B88210C97399EE69B374F;5875.
+(rerunfilecheck)             Checksum: A608B1C4849EE158C39CC4EFB2362A6F;6589.
 
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 26063 strings out of 493013
- 443864 string characters out of 6133328
- 557860 words of memory out of 5000000
- 28938 multiletter control sequences out of 15000+600000
+ 26107 strings out of 493013
+ 444516 string characters out of 6133328
+ 559459 words of memory out of 5000000
+ 28969 multiletter control sequences out of 15000+600000
  18880 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,9n,78p,1939b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,78p,1919b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
 /usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
@@ -1658,10 +1676,10 @@ exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on thesis.pdf (34 pages, 426768 bytes).
+Output written on thesis.pdf (37 pages, 446993 bytes).
 PDF statistics:
- 608 PDF objects out of 1000 (max. 8388607)
- 549 compressed objects within 6 object streams
- 129 named destinations out of 1000 (max. 500000)
- 359 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 634 PDF objects out of 1000 (max. 8388607)
+ 568 compressed objects within 6 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 401 words of extra memory for PDF output out of 10000 (max. 10000000)
 

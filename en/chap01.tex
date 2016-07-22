@@ -33,6 +33,7 @@ Second type, represents edges from nodes to landmarks. A landmark is and unique 
 Third common type of edges are loop closure edges. These edges usually connect two nodes, which share same perception of the world. Aligning these perceptions yields virtual transformation between these nodes. A covariance needs to be provided from alignment process and depends on used technique. Loop closure edge usually exists if we have revisited same place again. This is crucial information for \gls{SLAM}'s back-end. Based on it optimalization finds out if odometry edges reliably represent reality and adjust pose estimates.
 
 \subsection {Loop closure creation}
+\label{subsec:loop_closure_creation}
 First step of correct loop closure creation is to identify all nodes ,which might have overlapping measurements. Given pose $a$ we find all nodes $b_{1} ... b_{n}$ from graph whose sensor measurements overlap pose $a$. This could be determined by finding relative position of nodes $a$ and $b_{i}$. One possible method how to determine is to use Dijkstra projection mentioned in \cite{Olson2009Loop}. Dijkstra projection starts at node $a$ and concatenate covariances and transformation along the minimum uncertainty path. This path is selected based on determinant of covariance matrix. Small covariance matrix has lower determinant than covariance matrix with large numbers. Minimum uncertainty selection guaranties that algorithm will get to the target $b_{i}$ with maximum precision. Concatenation of covariances is done based on equation:
 \begin{equation}
 P_{a+b} = J_{a} P_{a} J_{a}^{T} + J_{b} P_{b} J_{b}^{T}
@@ -53,6 +54,7 @@ J_{b} =
 \end{equation} 
 where $P_{a}$ is acumulated covariance, $P_{b}$ is aditional covariance, Jaccobian $J_{a}$ use parameters from transformation $(x,y,\theta)_{a}$ and $J_{b}$ from  $(x,y,\theta)_{b}$ Concatenation of transformations is defined as:
 \begin{equation}
+\label{eq:concat_trans}
 \begin{pmatrix}
 x \\ y
 \end{pmatrix}_{a+b}
@@ -315,6 +317,7 @@ Correlative scan registration is algorithm presented by \cite{olson2009real}. Th
 
  The algorithm requires two point clouds. Target point cloud is used for generation of fast look up table filled with bit values. It is created by separating points from target cloud into individual cells. Every cell which has some points in it is marked as occupied. After this step we have a table with value 1 in cells with some points and value 0 in cells without points. In next step we add sensor noise to the table. As a function of our noise we use radially symmetric kernel. 
  \begin{equation}
+ \label{eq:smooth_kernel}
  K_{i,j} = \exp\left(\frac{-1}{2}\left(\frac{\sqrt{(i r)^{2} + (j r)^{2}}}{\sigma}\right)^{2}\right) \eta
  \end{equation}
  \begin{equation}
