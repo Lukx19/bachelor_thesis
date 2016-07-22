@@ -36,31 +36,38 @@ Occupancy map is grid based type. It consists of grid with cells. In every cell 
 Quad-tree is a tree data structure. Each node of the tree has exactly four children. Nodes are decomposing space into sub-areas. Every node has its threshold. When it is reached, cell subdivides into four smaller cells. This process dynamically change resolution of the grid. This way we get higher precision in places where it matters more. Maximal precision is usually bounded by minimal size of leaf nodes.
 
 \gls{NDT} representation uses grid based datastructure. Each cell has normal distribution parameters calculated based on inserted points. This model offers constant memory consumption over time. In comparison, \gls{NDT} has better representation of inner points than octree (3D case of quad-tree). This was proven as convenient by \cite{Saarinen13}. They have shown that coarser \gls{NDT} grid can have similar results in precision of space representation than finer octree map. Standard \gls{NDT} representation has deeper explanation in section \ref{subsec:NDT_grid}. \gls{NDT} maps can also include information about occupancy. This extension called \gls{NDT-OM} will be presented in \ref{subsec:NDT_OM}. In addition to occupancy, this method also add a way how to remove dynamic objects from map. This is important feature if \gls{SLAM} should work in dynamic environment.      
-\todo{picture of occupancy grid, pointcloud ndt grid}
+\begin{figure}
+	\centering
+	\includegraphics[width=100mm]{../img/maps.png}
+	\caption{On the left is visualization of occupancy grid. On the right is visualized point cloud of a room.}
+	\label{fig:maps}
+\end{figure}
 \newpage
 
 \section{Registration}
-\label{Scan_reg}
+\label{sec:Scan_reg}
 Scan registration is one of the key concepts in full SLAM solution. Algorithm can use scan matching between two scans to determine transformation. It tells how far robot moved between scans. Two scans might not offer enough information for successful registration. Imagine a robot which is standing in the corner of a room with sensor facing the wall. Scan from this robot has only information from very limited field of view and this might lead to matching errors. Therefore, it is usually necessary to combine individual scans to operate with more data.  
 
 One of the algorithms which uses this process is called incremental scan-matching. It takes arriving scan and tries to match it against the map built from previous measurements. By doing so it can very well be used instead of robots odometry in \gls{SLAM}'s graph creation. Algorithms which are possible to work in incremental scan-matching on top of \gls{NDT} maps are mentioned in sections \ref{subsec:P2D_NDT} and \ref{subsec:D2D_NDT}. Other often used approach is the \gls{ICP}, which is described in \ref{subsec:ICP}. All these algorithms use optimization methods, e.g. Newton's method. Good initial guess is needed in order to guarantee converge to the right solution. 
 
 Another example of usage scan registration in graph based \gls{SLAM} is for testing generated loop closures. Loop closures are edges which close the loop (create cycle) of robot's movement in graph. Details about loop closure generation are in section \ref{subsec:loop_closure_creation}. Measurements from nodes which play role in loop closure are scan matched. By doing this we are trying to proof if two nodes are really overlapping.  The Biggest problem with this registration is that we have no valid prior information about positions of these nodes. These two scans might be perfectly aligned or they can be from completely different parts of the world. Registration needs to robustly estimate the transformation. In case of misleading closure algorithm should reject it. One scan matcher capable of robust transformation calculation is mentioned in \ref{subsec:Corr}.  
 
+\begin{figure}
+\centering
+\includegraphics[width=100mm]{../img/ambi.png} 	
+\caption{Local and global ambiguities in scan registrations. On the left is local ambiguity. On the right is global ambiguity with two maps. First map is original map without all information about environment. Second map is reality with all features. Registration wrongly associated matching based on information only from first map.} \label{fig:ambig}
+
+\end{figure}
 
 Even robust scan-matchers can fail to correctly identify loop closures.  These registration mismatches can be divided into two categories.
 
-The First category is local ambiguity. Good example of it is when robot moves in long corridor as seen in figure \ref{Pic_coridor} on the left. Environment does not have many distinctive features and algorithm selected one of three possible correct options.
+The First category is local ambiguity. Good example of it is when robot moves in long corridor as seen in figure \ref{fig:ambig} on the left. Environment does not have many distinctive features and algorithm selected one of three possible correct options.
 
-The second category is global ambiguity. This ambiguity usually happens when algorithm do not have enough information about whole environment. Limited size of scans and environment with similar indistinguishable elements can resolve in wrong association. One example can be seen in figure \ref{Pic_coridor} on the right.   
-     
- \begin{figure}
- \label{Pic_coridor}
+The second category is global ambiguity. This ambiguity usually happens when algorithm do not have enough information about whole environment. Limited size of scans and environment with similar indistinguishable elements can resolve in wrong association. One example can be seen in figure \ref{fig:ambig} on the right.   
 
- \end{figure}
 
-  \todo{picture of corridor}
-  \newpage
+
+
   
 \section {Graph-based SLAM on NDT maps}
 

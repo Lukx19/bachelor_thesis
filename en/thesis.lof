@@ -1,7 +1,11 @@
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces On the left is visualization of occupancy grid. On the right is visualized point cloud of a room.}}{6}{figure.1.1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Local and global ambiguities in scan registrations. On the left is local ambiguity. On the right is global ambiguity with two maps. First map is original map without all information about environment. Second map is reality with all features. Registration wrongly associated matching based on information only from first map.}}{7}{figure.1.2}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Image describing raytracing update. Yellow elipses represent normal distributions. Letter R represent robot position and red line ray tracing line. \gls {RCU} will be applied to the cell marked A. A distribution in cell marked with letter B will get updated as unoccupied. Cell C will stay without any update.}}{14}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Image on the left shows look up table before applying smoothing kernel. Image on the right is after application of kernel.}}{18}{figure.2.2}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram of graph based SLAM on NDT maps}}{19}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Imiges with alignemt. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.}}{26}{figure.3.2}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram of graph based SLAM on NDT maps}}{20}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Images with alignment. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.}}{27}{figure.3.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

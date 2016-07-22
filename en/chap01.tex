@@ -63,6 +63,7 @@ Even the best registration algorithm may fail and return erroneous measurement. 
 Other option is to use robust optimization engines, witch can identify outliers in the form of error edges. Comparison of known outliers rejection methods was done by \cite{RobustOpt}. 
 
 
+\newpage
 
 \subsection{Optimization}
 Back-end receives graph with odometry edges and loop closure edges. The main task of back-end is to optimize this graph and return the most likely position of nodes. Popular method of optimization is to use the Gauss-Newton or the Levenberg-Marquardt algorithms. 
@@ -147,14 +148,12 @@ Parameter M modifies how fast we let RCU replace old measurements by new one. Sm
 Calculation of occupancy parameter is done by ray-tracing. Consider that we have current map $m_{x}$. We have calculated new NDT map $m_{y}$ from incoming distance measurements. Both maps needs to be in the same coordinate system. Ray-tracing starts at current robot position in map $m_{x}$. End point of ray-tracing is value of mean from one of the cells in new map $m_{y}$. Program visits every cell along the line and updates covariance. It is important to visit every cell just once. When is ray-tracing over we merge in all cells from $m_{y}$ into $m_{x}$ with RCU update rule.
 
 The main idea in occupancy update calculation is that not all cells are occupied fully. Normal distribution usually occupies only part of the cell. A ray tracing through this cell might not intersect bounds of normal distribution at all. In order to consistently update occupancy the update value should not be a constant. Better option is to choose a function describing difference between map $m_{y}$ and $m_{x}$. This function with explanation might be found in \cite{Saarinen213}.
-\todo{pridat obrazok rautracingu}
-
-
-%Ray tracing line starts at point $x_{s}$ and ends in point $y_{i}$. We define our line in slope-intercept form with parameter $t \in \R $ and $l_{o}$ is a point on the line:
-%\begin{equation}
-%x(t) = \frac{y_{i} - x_{s}}{ \lVert y_{i} - x_{s} \lVert } \:t + l_{o}
-%\end{equation}
-%Given a normal distribution $N(\mu_{i}, P_{i})$ from the cell hit by ray-tracing, the likelihood along the line is defined as function:
+\begin{figure}
+	\centering
+	\includegraphics[width=70mm]{../img/ray_trace2.png}
+	\caption{Image describing raytracing update. Yellow elipses represent normal distributions. Letter R represent robot position and red line ray tracing line. \gls{RCU} will be applied to the cell marked A. A distribution in cell marked with letter B will get updated as unoccupied. Cell C will stay without any update.}
+	\label{fig:raytrace}
+\end{figure}
 
 \newpage   
 \section{Registration algorithms}
@@ -257,6 +256,7 @@ This algorithm is also possible to improve by iterating over multiple layers wit
 
 In comparison, with \gls{NDT} registration this algorithm needs only \gls{NDT} grids for registration. Point cloud can be thrown away after successful creation of grid. This allow saving memory and efficiently represent maps in \gls{SLAM}. In addition, \gls{D2D} is almost ten times faster than standard \gls{NDT} registration on same dataset. This was proven in comparative study from \cite{NDTcomparative}. The main cause of this speed up is smaller number of calls for score calculation. In \gls{P2D}-\gls{NDT} mentioned in last section we need to calculate score for each point in source point cloud. In case of \gls{D2D} we just calculate score function for each cell of source grid. This is done by generating only pairs between cell from source grid and closest cell from target cell. Closest cell can be easily found by using kD-tree with values of target grid's means.
   
+\newpage
 \subsection {ICP}
 \label{subsec:ICP}
 The iterative closest point (\gls{ICP}) algorithm was first introduced by \cite{chen92ICP} and it is still very popular method for registering point clouds. To briefly summaries algorithm: ICP iteratively refines position of two point clouds by optimizing the sum of square distances between corresponding pair of points from two clouds. This approach is usually called point-to-point registration. Class of algorithms based on \gls{ICP} has developed many modifications. Surrvey of base type of ICP algorithms and their comparison on well designed datasets is in work of \cite{pomerleau2013comparing}. 
@@ -282,14 +282,22 @@ Correlative scan registration is algorithm presented by \cite{olson2009real}. Th
  \end{equation}
  where $K_{i,j}$ is one element of kernel; $\sqrt{(i r)^{2} + (j r)^{2}}$ is euclidean distance from center of the kernel to the element $i,j$ with cell size parameter $r$. Standard deviation of sensor nose is abbreviated by $\sigma$ and $\eta$ is kernels max value.
 
- The Kernel overlaps over every occupied cell in the table. If value of kernel is higher than value in table. Table is updated with the kernels value. Generated smoothing can be seen in figure \ref{fig:Corr_smooth}. \todo{figure smoothing or remove}
+ The Kernel overlaps over every occupied cell in the table. If value of kernel is higher than value in table. Table is updated with the kernels value. Generated smoothing can be seen in figure \ref{fig:kernel}. 
  
  This algorithm is avoiding initial guess by trying all possible rotations and translations of source cloud. Every point of transformed source cloud is mapped into certain cell of look up table. The total score of transformed cloud is sum of all mapped cells scores. Algorithm usually tries rotations and translations from selected range. Transformation with the best score is the most probable transformation.
  
  This brute force process might take long time if we select small cell size to achieve good registration. To speed up this process we first need to avoid computationally expensive calculation of goniometric functions in transformation. This can be achieved by first generating all possible rotations of point cloud. For each rotation we try all translations from selected range with step size selected based on cell size of look up table.
  
  Real speed improvements offers usage of two layer architecture of look up tables. The first table has coarse resolution. This table is used for initial estimation on the whole range of selected rotations and translations. The transformations with best score are used in the second round. From every good transformation is generated search space voxel. Origin of voxel is taken from transformation. Size of voxel is cell size from coarse table. Search voxels are evaluated on look up table with fine resolution. Search space is this time limited to search voxel and initial transformation is taken from origin of voxel. The best result is our solution. By this process computation time drops rapidly as show in work of \cite{olson2009real}.     
-    
+   \begin{figure}
+   \label{fig:kernel}
+   	\centering
+   	\includegraphics[width=50mm]{../img/kernel_a.png}
+   	\includegraphics[width=50mm]{../img/kernel_b.png}
+   	
+   	\caption{Image on the left shows look up table before applying smoothing kernel. Image on the right is after application of kernel.}
+   	\label{fig:raytrace}
+   \end{figure} 
 \newpage
      
 

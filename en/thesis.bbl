@@ -1,152 +1,123 @@
-\begin{thebibliography}{19}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{MTKW02}
 
-\bibitem[Biber and Strasser(2003)]{Biber03}
+\bibitem[BS03]{Biber03}
 P.~Biber and W.~Strasser.
 \newblock The normal distributions transform: a new approach to laser scan
   matching.
-\newblock In \emph{Intelligent Robots and Systems, 2003. (IROS 2003).
+\newblock In {\em Intelligent Robots and Systems, 2003. (IROS 2003).
   Proceedings. 2003 IEEE/RSJ International Conference on}, volume~3, pages
   2743--2748 vol.3, Oct 2003.
-\newblock \doi{10.1109/IROS.2003.1249285}.
 
-\bibitem[Chen and Medioni(1992)]{chen92ICP}
+\bibitem[CM92]{chen92ICP}
 Yang Chen and G{\'e}rard Medioni.
 \newblock Object modelling by registration of multiple range images.
-\newblock \emph{Image and vision computing}, 10\penalty0 (3):\penalty0
-  145--155, 1992.
+\newblock {\em Image and vision computing}, 10(3):145--155, 1992.
 
-\bibitem[Grisetti et~al.(2007)Grisetti, Stachniss, and Burgard]{Rao-PF}
+\bibitem[GKSB10]{GraphTutorial}
+Giorgio Grisetti, Rainer Kummerle, Cyrill Stachniss, and Wolfram Burgard.
+\newblock A tutorial on graph-based slam.
+\newblock {\em IEEE Intelligent Transportation Systems Magazine}, 2(4):31--43,
+  2010.
+
+\bibitem[GSB07]{Rao-PF}
 G.~Grisetti, C.~Stachniss, and W.~Burgard.
 \newblock Improved techniques for grid mapping with rao-blackwellized particle
   filters.
-\newblock \emph{Trans. Rob.}, 23\penalty0 (1):\penalty0 34--46, February 2007.
-\newblock ISSN 1552-3098.
-\newblock \doi{10.1109/TRO.2006.889486}.
+\newblock {\em Trans. Rob.}, 23(1):34--46, February 2007.
 
-\bibitem[Grisetti et~al.(2010)Grisetti, Kummerle, Stachniss, and
-  Burgard]{GraphTutorial}
-Giorgio Grisetti, Rainer Kummerle, Cyrill Stachniss, and Wolfram Burgard.
-\newblock A tutorial on graph-based slam.
-\newblock \emph{IEEE Intelligent Transportation Systems Magazine}, 2\penalty0
-  (4):\penalty0 31--43, 2010.
-
-\bibitem[Huang and Dissanayake(2007)]{EKF}
+\bibitem[HD07]{EKF}
 S.~Huang and G.~Dissanayake.
 \newblock Convergence and consistency analysis for extended kalman filter based
   slam.
-\newblock \emph{IEEE Transactions on Robotics}, 23\penalty0 (5):\penalty0
-  1036--1049, Oct 2007.
-\newblock ISSN 1552-3098.
-\newblock \doi{10.1109/TRO.2007.903811}.
+\newblock {\em IEEE Transactions on Robotics}, 23(5):1036--1049, Oct 2007.
 
-\bibitem[Lu and Milios(1997)]{LuMilios}
+\bibitem[LM97]{LuMilios}
 Feng Lu and Evangelos Milios.
 \newblock Globally consistent range scan alignment for environment mapping.
-\newblock \emph{Autonomous robots}, 4\penalty0 (4):\penalty0 333--349, 1997.
+\newblock {\em Autonomous robots}, 4(4):333--349, 1997.
 
-\bibitem[Magnusson et~al.(2015)Magnusson, Vaskevicius, Stoyanov, Pathak, and
-  Birk]{NDTcomparative}
-M.~Magnusson, N.~Vaskevicius, T.~Stoyanov, K.~Pathak, and A.~Birk.
-\newblock Beyond points: Evaluating recent 3d scan-matching algorithms.
-\newblock In \emph{2015 IEEE International Conference on Robotics and
-  Automation (ICRA)}, pages 3631--3637, May 2015.
-\newblock \doi{10.1109/ICRA.2015.7139703}.
-
-\bibitem[Magnusson(2009)]{magnusson09}
+\bibitem[Mag09]{magnusson09}
 Martin Magnusson.
 \newblock The three-dimensional normal-distributions transform: an efficient
   representation for registration, surface analysis, and loop detection.
 \newblock 2009.
 
-\bibitem[Montemerlo et~al.(2002)Montemerlo, Thrun, Koller, and
-  Wegbreit]{FastSlam}
+\bibitem[MTKW02]{FastSlam}
 Michael Montemerlo, Sebastian Thrun, Daphne Koller, and Ben Wegbreit.
 \newblock Fastslam: A factored solution to the simultaneous localization and
   mapping problem.
-\newblock In \emph{In Proceedings of the AAAI National Conference on Artificial
+\newblock In {\em In Proceedings of the AAAI National Conference on Artificial
   Intelligence}, pages 593--598. AAAI, 2002.
 
-\bibitem[Olson(2009{\natexlab{a}})]{Olson2009Loop}
+\bibitem[MVS{\etalchar{+}}15]{NDTcomparative}
+M.~Magnusson, N.~Vaskevicius, T.~Stoyanov, K.~Pathak, and A.~Birk.
+\newblock Beyond points: Evaluating recent 3d scan-matching algorithms.
+\newblock In {\em 2015 IEEE International Conference on Robotics and Automation
+  (ICRA)}, pages 3631--3637, May 2015.
+
+\bibitem[Ols09a]{Olson2009Loop}
 Edwin Olson.
 \newblock Recognizing places using spectrally clustered local matches.
-\newblock \emph{Robot. Auton. Syst.}, 57\penalty0 (12):\penalty0 1157--1172,
-  December 2009{\natexlab{a}}.
-\newblock ISSN 0921-8890.
-\newblock \doi{10.1016/j.robot.2009.07.021}.
+\newblock {\em Robot. Auton. Syst.}, 57(12):1157--1172, December 2009.
 
-\bibitem[Olson et~al.(2006)Olson, Leonard, and Teller]{OlsonGS}
-Edwin Olson, John Leonard, and Seth Teller.
-\newblock Fast iterative alignment of pose graphs with poor initial estimates.
-\newblock In \emph{Proceedings 2006 IEEE International Conference on Robotics
-  and Automation, 2006. ICRA 2006.}, pages 2262--2269. IEEE, 2006.
-
-\bibitem[Olson(2009{\natexlab{b}})]{olson2009real}
+\bibitem[Ols09b]{olson2009real}
 Edwin~B Olson.
 \newblock Real-time correlative scan matching.
-\newblock In \emph{Robotics and Automation, 2009. ICRA'09. IEEE International
-  Conference on}, pages 4387--4393. IEEE, 2009{\natexlab{b}}.
+\newblock In {\em Robotics and Automation, 2009. ICRA'09. IEEE International
+  Conference on}, pages 4387--4393. IEEE, 2009.
 
-\bibitem[Pomerleau et~al.(2013)Pomerleau, Colas, Siegwart, and
-  Magnenat]{pomerleau2013comparing}
+\bibitem[OLT06]{OlsonGS}
+Edwin Olson, John Leonard, and Seth Teller.
+\newblock Fast iterative alignment of pose graphs with poor initial estimates.
+\newblock In {\em Proceedings 2006 IEEE International Conference on Robotics
+  and Automation, 2006. ICRA 2006.}, pages 2262--2269. IEEE, 2006.
+
+\bibitem[PCSM13]{pomerleau2013comparing}
 Fran{\c{c}}ois Pomerleau, Francis Colas, Roland Siegwart, and St{\'e}phane
   Magnenat.
 \newblock Comparing icp variants on real-world data sets.
-\newblock \emph{Autonomous Robots}, 34\penalty0 (3):\penalty0 133--148, 2013.
+\newblock {\em Autonomous Robots}, 34(3):133--148, 2013.
 
-\bibitem[Saarinen et~al.(2013{\natexlab{a}})Saarinen, Andreasson, Stoyanov,
-  Ala-Luhtala, and Lilienthal]{Saarinen13}
+\bibitem[SAS{\etalchar{+}}13]{Saarinen13}
 J.~Saarinen, H.~Andreasson, T.~Stoyanov, J.~Ala-Luhtala, and A.~J. Lilienthal.
 \newblock Normal distributions transform occupancy maps: Application to
   large-scale online 3d mapping.
-\newblock In \emph{Robotics and Automation (ICRA), 2013 IEEE International
-  Conference on}, pages 2233--2238, May 2013{\natexlab{a}}.
-\newblock \doi{10.1109/ICRA.2013.6630878}.
+\newblock In {\em Robotics and Automation (ICRA), 2013 IEEE International
+  Conference on}, pages 2233--2238, May 2013.
 
-\bibitem[Saarinen et~al.(2013{\natexlab{b}})Saarinen, Stoyanov, Andreasson, and
-  Lilienthal]{Saarinen213}
-J.~Saarinen, T.~Stoyanov, H.~Andreasson, and A.~J. Lilienthal.
-\newblock Fast 3d mapping in highly dynamic environments using normal
-  distributions transform occupancy maps.
-\newblock In \emph{2013 IEEE/RSJ International Conference on Intelligent Robots
-  and Systems}, pages 4694--4701, Nov 2013{\natexlab{b}}.
-\newblock \doi{10.1109/IROS.2013.6697032}.
-
-\bibitem[Stoyanov et~al.(2013)Stoyanov, Saarinen, Andreasson, and
-  Lilienthal]{NDTOMFusion}
-T.~Stoyanov, J.~Saarinen, H.~Andreasson, and A.~J. Lilienthal.
-\newblock Normal distributions transform occupancy map fusion: Simultaneous
-  mapping and tracking in large scale dynamic environments.
-\newblock In \emph{2013 IEEE/RSJ International Conference on Intelligent Robots
-  and Systems}, pages 4702--4708, Nov 2013.
-\newblock \doi{10.1109/IROS.2013.6697033}.
-
-\bibitem[Stoyanov et~al.(2012)Stoyanov, Magnusson, Andreasson, and
-  Lilienthal]{Stoyanov01102012}
+\bibitem[SMAL12]{Stoyanov01102012}
 Todor Stoyanov, Martin Magnusson, Henrik Andreasson, and Achim~J Lilienthal.
 \newblock Fast and accurate scan registration through minimization of the
   distance between compact 3d ndt representations.
-\newblock \emph{The International Journal of Robotics Research}, 31\penalty0
-  (12):\penalty0 1377--1393, 2012.
-\newblock \doi{10.1177/0278364912460895}.
+\newblock {\em The International Journal of Robotics Research},
+  31(12):1377--1393, 2012.
 
-\bibitem[Sünderhauf and Protzel(2013)]{RobustOpt}
+\bibitem[SP13]{RobustOpt}
 N.~Sünderhauf and P.~Protzel.
 \newblock Switchable constraints vs. max-mixture models vs. rrr - a comparison
   of three approaches to robust pose graph slam.
-\newblock In \emph{Robotics and Automation (ICRA), 2013 IEEE International
+\newblock In {\em Robotics and Automation (ICRA), 2013 IEEE International
   Conference on}, pages 5198--5203, May 2013.
-\newblock \doi{10.1109/ICRA.2013.6631320}.
 
-\bibitem[Ulas and Temeltas(2011)]{ulas20113d}
+\bibitem[SSAL13a]{Saarinen213}
+J.~Saarinen, T.~Stoyanov, H.~Andreasson, and A.~J. Lilienthal.
+\newblock Fast 3d mapping in highly dynamic environments using normal
+  distributions transform occupancy maps.
+\newblock In {\em 2013 IEEE/RSJ International Conference on Intelligent Robots
+  and Systems}, pages 4694--4701, Nov 2013.
+
+\bibitem[SSAL13b]{NDTOMFusion}
+T.~Stoyanov, J.~Saarinen, H.~Andreasson, and A.~J. Lilienthal.
+\newblock Normal distributions transform occupancy map fusion: Simultaneous
+  mapping and tracking in large scale dynamic environments.
+\newblock In {\em 2013 IEEE/RSJ International Conference on Intelligent Robots
+  and Systems}, pages 4702--4708, Nov 2013.
+
+\bibitem[UT11]{ulas20113d}
 Cihan Ulas and Hakan Temeltas.
 \newblock A 3d scan matching method based on multi-layered normal distribution
   transform.
-\newblock \emph{IFAC Proceedings Volumes}, 44\penalty0 (1):\penalty0
-  11602--11607, 2011.
+\newblock {\em IFAC Proceedings Volumes}, 44(1):11602--11607, 2011.
 
 \end{thebibliography}

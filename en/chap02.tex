@@ -5,11 +5,11 @@ In this chapter we will present our solution to create 2D varian of graph based 
 
 Standard input of many \gls{SLAM} algorithms is odometry. In our case we do not require any prior information about robot movements. Robot position estimation is done by fast incremental scan matching. The only mandatory input is a point cloud extracted from robot's measurement. Scan matcher calculates relative transformation based on received point cloud and incremental scan matcher's map. We will refer to this map as to the moving window. It is created by merging multiple old point clouds. More details will be provided in section \ref{sec:window}.
 
-Resulting transformation is used in the \gls{NDT} frame creation process. \gls{NDT} frame is small map which is created out of couple consecutive scans. Precise transformation is used to correctly merge these scans into single frame. This mini map is than used as a measurement information in a node of pose graph. Creating small \gls{NDT} frames solves problem measurements with small number of points. Imagine situation where robot is standing close to the corner of the room. In this scenario incoming point clouds hold only small number of points, because field of view is narrow. Similar problem arise if robot uses sensor with limited field of view e.g. Kinect. To solve it we need to integrate multiple scans to get better outline of the world. More information about world also helps to reduce chance of ambiguous loop detections \ref{Scan_reg} because larger frames have higher chance to include more unique features. Additionally, we also want to utilize advantages of \gls{NDT-OM} occupancy update rule. It is able to detect dynamic objects by ray-tracing and update map accordingly. This detection is done by merging multiple scans and re-observing same cell multiple times. More information about design choices behind \gls{NDT} frames are in section \ref{sec:NDT_frame}.
+Resulting transformation is used in the \gls{NDT} frame creation process. \gls{NDT} frame is small map which is created out of couple consecutive scans. Precise transformation is used to correctly merge these scans into single frame. This mini map is than used as a measurement information in a node of pose graph. Creating small \gls{NDT} frames solves problem measurements with small number of points. Imagine situation where robot is standing close to the corner of the room. In this scenario incoming point clouds hold only small number of points, because field of view is narrow. Similar problem arise if robot uses sensor with limited field of view e.g. Kinect. To solve it we need to integrate multiple scans to get better outline of the world. More information about world also helps to reduce chance of ambiguous loop detections \ref{sec:Scan_reg} because larger frames have higher chance to include more unique features. Additionally, we also want to utilize advantages of \gls{NDT-OM} occupancy update rule. It is able to detect dynamic objects by ray-tracing and update map accordingly. This detection is done by merging multiple scans and re-observing same cell multiple times. More information about design choices behind \gls{NDT} frames are in section \ref{sec:NDT_frame}.
 
 After \gls{NDT} frame generation phase, algorithms creates representing node in pose graph. Each two nodes are connected by odometry edge. Original odometry received from scan matching process was used to create \gls{NDT} frames. In our abstraction, odometry is represented by transformation between origins of consecutive frames. In the next step, pose graph generates possible loop closure edges. To do so we need to traverse a graph with use of Dijkstra projection and apply our radius based metric described in section \ref{sec:LoopClosureMetric}. 
 
-The potential matches need to be robustly aligned. Solution to this problem is the most difficult. We need algorithm which is able to perform 10s of registration per second. At the same time it needs to reject matches which are not from the same part of the environment. In addition, some errors caused by local and global ambiguities \ref{Scan_reg} are very difficult to avoid. We propose solution to these problems by improving version of \gls{D2D}-\gls{NDT}. In this adaptation, we utilize robust initial pose estimation from Correlative scan registration \ref{subsec:Corr} and for finer alignment \gls{D2D}-\gls{NDT} \ref{subsec:D2D_NDT}. Full description is provided in \ref{sec:Robust D2D-NDT}.
+The potential matches need to be robustly aligned. Solution to this problem is the most difficult. We need algorithm which is able to perform 10s of registration per second. At the same time it needs to reject matches which are not from the same part of the environment. In addition, some errors caused by local and global ambiguities \ref{sec:Scan_reg} are very difficult to avoid. We propose solution to these problems by improving version of \gls{D2D}-\gls{NDT}. In this adaptation, we utilize robust initial pose estimation from Correlative scan registration \ref{subsec:Corr} and for finer alignment \gls{D2D}-\gls{NDT} \ref{subsec:D2D_NDT}. Full description is provided in \ref{sec:Robust D2D-NDT}.
 
 Generated loop closure edges needs to be validated against possible outliers. In this matter we have decided to use robust optimization engine with switchable constrains. We have made decision based on comparative study by \cite{RobustOpt}, where this method offered the best result in comparison to execution time. We need to minimize amount of time spent in optimization. Saved time can be used to validate more loop closure edges. Second important factor in optimization process is number of nodes and edges in graph. Computation time grows with increasing number of elements in the graph. We are limiting number of nodes by using \gls{NDT} frames. Frames can be farther away from each other, because they accumulate multiple measurements.
 
@@ -41,9 +41,18 @@ To minimize any alignment issues we decided to perform fast scan matching. This 
 \label{alg:move_window}
     \caption{Moving window processing loop}
 \begin{algorithmic}[1]
-\Require point cloud $X$
+\Require point cloud $X$, move window's \gls{NDT} grid $M$, transformation $T_{o}$ to the origin of moving window, transformation $T_{r}$ unused from move in last call of function, transformation $P$  last known absolute pose of moving window.  
  \Function{calculateTransform}{$X$}
- 
+	 \State $X_{o} \gets$ transformPointCloud($X$,$T_{o} * T_{r}$)
+	 \State $N_{o} \gets$ createNDTGrid($X_{o}$)
+	 \State $T_{ox} \gets$ alignD2D($N_{o}$,$M$)
+	 \State $M$.mergeIn($X_{o}$,$T_{ox}$)
+	 \Comment applies transformation on point cloud and merge it into moving window
+	 \State $T_{diff} \gets P^{-1} * (T_{o} * T_{ox})$
+	 \State $P \gets T_{o} * T_{ox}$
+	 \Comment update of absolute pose of window for next call 
+	 \State $T_{r} \gets M$.moveWindow($T_{ox}$)
+	 \State \Return $T_{diff}$
  \EndFunction
 \end{algorithmic}
 \end{algorithm}
@@ -134,7 +143,7 @@ Robust alignment offers us the best transformation between source and target \gl
 	\centering
 	\includegraphics[width=150mm]{../img/good_align.png}
 	\includegraphics[width=150mm]{../img/bad_align.png}
-	\caption{Imiges with alignemt. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.}
+	\caption{Images with alignment. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.}
 	\label{fig:bad_align}
 \end{figure}
 \newpage
