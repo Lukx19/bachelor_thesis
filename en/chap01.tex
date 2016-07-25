@@ -56,7 +56,7 @@ x \\ y
 \end{equation}
 where $R(\theta_{a})$ is rotation matrix created from angle $\theta_{a}$.
 
-After successful generation of overlapping nodes, every potential pair needs to be tested by registration algorithm. This algorithm needs to be robust enough to reject as many incorrect pairs as possible. If matching is possible it should align measurements and return best transformation. More about this type of algorithms can be found in section \ref{Scan_reg}.
+After successful generation of overlapping nodes, every potential pair needs to be tested by registration algorithm. This algorithm needs to be robust enough to reject as many incorrect pairs as possible. If matching is possible it should align measurements and return best transformation. More about this type of algorithms can be found in section \ref{sec:Scan_reg}.
 
 Even the best registration algorithm may fail and return erroneous measurement. Loop closure process needs to reject these errors. One solution is to use method proposed by \cite{Olson2009Loop}. In this approach we first group loop closure edges into groups based on their topological distance from each other. Later we validate every cluster against internal inconsistencies. Edges marked as inconsistent are deleted from system. 
 

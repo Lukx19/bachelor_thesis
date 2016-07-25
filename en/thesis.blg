@@ -13,45 +13,45 @@ A level-1 auxiliary file: bibliography.aux
 The style file: alpha.bst
 Database file #1: bibliography.bib
 Warning--empty journal in magnusson09
-You've used 19 entries,
+You've used 20 entries,
             2543 wiz_defined-function locations,
-            704 strings with 8449 characters,
-and the built_in function-call counts, 9862 in all, are:
-= -- 1011
-> -- 444
+            711 strings with 8587 characters,
+and the built_in function-call counts, 10366 in all, are:
+= -- 1060
+> -- 475
 < -- 13
-+ -- 164
-- -- 158
-* -- 731
-:= -- 1507
-add.period$ -- 60
-call.type$ -- 19
-change.case$ -- 131
-chr.to.int$ -- 17
-cite$ -- 20
-duplicate$ -- 392
-empty$ -- 723
-format.name$ -- 178
-if$ -- 2102
++ -- 177
+- -- 170
+* -- 776
+:= -- 1592
+add.period$ -- 63
+call.type$ -- 20
+change.case$ -- 139
+chr.to.int$ -- 18
+cite$ -- 21
+duplicate$ -- 406
+empty$ -- 755
+format.name$ -- 191
+if$ -- 2201
 int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 19
-newline$ -- 99
-num.names$ -- 57
-pop$ -- 124
+missing$ -- 20
+newline$ -- 104
+num.names$ -- 60
+pop$ -- 129
 preamble$ -- 1
-purify$ -- 150
+purify$ -- 159
 quote$ -- 0
-skip$ -- 362
+skip$ -- 374
 stack$ -- 0
-substring$ -- 718
-swap$ -- 125
+substring$ -- 753
+swap$ -- 126
 text.length$ -- 13
 text.prefix$ -- 3
 top$ -- 0
-type$ -- 152
+type$ -- 160
 warning$ -- 1
-while$ -- 91
-width$ -- 22
-write$ -- 252
+while$ -- 95
+width$ -- 23
+write$ -- 265
 (There was 1 warning)

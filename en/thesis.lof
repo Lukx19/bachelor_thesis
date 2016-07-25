@@ -9,3 +9,9 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Images with alignment. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.}}{27}{figure.3.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces The \gls {NDT} map generated out of selected datasets with use of ground truth odometry information.}}{30}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison of effect of different frequency of frame creation. From left pictures of 1m, 2m and 4 meter distance between frames. Red arrows represent odometry edges, green edges are loop closure edges, white dost represent final map representation in form of point cloud of means}}{31}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Number of correct and incorrect registrations in score groups}}{32}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Map of the room mapped by our NDT aproach, hector mapper and gmapping. Visualization of our aproach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.}}{33}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Map of the corridors mapped by our \gls {NDT} approach, hector mapper and gmapping. Visualization of our approach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.}}{35}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Top picture shows portion of map with corridor when incremental scan matcher may use initial guess from odometry. Bottom picture shows ambiguous registration in corridor area.}}{36}{figure.5.6}

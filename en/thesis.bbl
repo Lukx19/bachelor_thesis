@@ -14,6 +14,12 @@ Yang Chen and G{\'e}rard Medioni.
 \newblock Object modelling by registration of multiple range images.
 \newblock {\em Image and vision computing}, 10(3):145--155, 1992.
 
+\bibitem[FJKL13]{MITDataset}
+Maurice Fallon, Hordur Johannsson, Michael Kaess, and John~J Leonard.
+\newblock The mit stata center dataset.
+\newblock {\em The International Journal of Robotics Research},
+  32(14):1695--1699, 2013.
+
 \bibitem[GKSB10]{GraphTutorial}
 Giorgio Grisetti, Rainer Kummerle, Cyrill Stachniss, and Wolfram Burgard.
 \newblock A tutorial on graph-based slam.
