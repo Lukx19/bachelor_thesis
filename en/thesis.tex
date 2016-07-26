@@ -51,6 +51,7 @@
 \usepackage{algpseudocode}
 \usepackage[acronym,toc,nomain]{glossaries}
 \usepackage{svg}
+\usepackage[toc,page,titletoc]{appendix}
 
 
 \makeglossaries
@@ -58,46 +59,46 @@
 %%% Basic information on the thesis
 
 % Thesis title in English (exactly as in the formal assignment)
-\def\ThesisTitle{Graph Based SLAM on NDT Maps}
+\def\ThesisTitle{Graph-based SLAM on Normal Distributions Transform Occupancy Map}
 
 % Author of the thesis
 \def\ThesisAuthor{Lukáš Jelínek}
 
 % Year when the thesis is submitted
-\def\YearSubmitted{2015}
+\def\YearSubmitted{2016}
 
 % Name of the department or institute, where the work was officially assigned
 % (according to the Organizational Structure of MFF UK in English,
 % or a full name of a department outside MFF)
-\def\Department{Name of the department}
+\def\Department{Department of Theoretical Computer Science and Mathematical Logic}
 
 % Is it a department (katedra), or an institute (ústav)?
 \def\DeptType{Department}
 
 % Thesis supervisor: name, surname and titles
-\def\Supervisor{Supervisor's Name}
+\def\Supervisor{RNDr. David Obdržálek, Ph.D.}
 
 % Supervisor's department (again according to Organizational structure of MFF)
-\def\SupervisorsDepartment{department}
+\def\SupervisorsDepartment{Department of Theoretical Computer Science and Mathematical Logic}
 
 % Study programme and specialization
-\def\StudyProgramme{study programme}
-\def\StudyBranch{study branch}
+\def\StudyProgramme{Computer Science}
+\def\StudyBranch{Programming and Software Systems}
 
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
-Dedication.
+I acknowlage my colleague Jiri Horner for sharing his knowledge in C++ programming. I would like to thank to my family and friends for all their support.
 }
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-Abstract.
+Recent advances in Normal distributions transform occupancy map (NDT-OM) representation has proven to be a viable option for mapping static and dynamic environment. Scan registration methods using NDT maps offer a fast and reliable way of registering two laser scans.  In this work, we combine 2D NDT mapping and scan matching with the graph-based representation of simultaneous localization and mapping (SLAM) optimization approach. This novel approach to full SLAM problem solution uses NDT mini-maps for partial map storage inside of pose graph's nodes. It also includes fast incremental scan matcher for odometry estimation. The scan matcher makes it possible to create larger mini-maps which offer better loop closure validation. This work also presents a novel robust distribution to distribution (D2D)-NDT scan matching. It is used for loop closure registration and validation of correct matches. The implementation can operate as an online algorithm inside of Robot Operating System (ROS) framework. Algorithm was tested on MIT Stata Center datasets.
 }
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
 \def\Keywords{%
-{key} {words}
+{SLAM} {NDT} {incremental scan matching} {ROS} {robot localization and mapping}
 }
 
 %% The hyperref package for clickable links in PDF and also for storing
@@ -159,7 +160,9 @@ Abstract.
 %%% which will likely be used in an electronic form rather than read (program
 %%% source code, data files, interactive charts, etc.). Electronic attachments
 %%% should be uploaded to SIS and optionally also included in the thesis on a~CD/DVD.
-\chapwithtoc{Attachments}
-
+%\chapwithtoc{Attachments}
+\begin{appendices}
+\include{ndt-gslam} 
+\end{appendices}
 \openright
 \end{document}

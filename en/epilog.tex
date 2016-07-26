@@ -1,2 +1,7 @@
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
+\gls{NDT} graph-based \gls{SLAM} algorithm presented in section \ref{sec:Sys_arch} can reliably solve localization problem of the robot. It also creates map representation of the world.  The algorithm is suitable for use on robotic systems with a 2D laser scanner. Algorithm does not require odometry information. It is useful especial for robots which do not have any means of providing odometry. The whole process starting with parsing input data and ending with location and map can run in an online matter. The combination of \gls{NDT} scan matcher for fast odometry estimation and pose graph map optimization proven to be a good combination. Correct generation of loop closure was able to save the map from scan matching errors.  Incremental scan matching by itself was not able to correctly map challenging environment. Pose errors were too large. 
+
+The proposed solution to loop closure validation can correctly identify a sufficient number of loop closing constrains. It also offers fast processing time with validation up to 50 loop closures per second. All registration algorithms are implemented with the use of standard \gls{PCL} APIs. It makes them a viable option for use inside of \gls{PCL} ecosystem.
+
+The algorithm is implemented in ROS package ndt\_gslam. This implementation uses a similar interface to other SLAM algorithms in \gls{ROS}.  
