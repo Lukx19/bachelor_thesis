@@ -8,50 +8,51 @@ A level-1 auxiliary file: chap01.aux
 A level-1 auxiliary file: chap02.aux
 A level-1 auxiliary file: chap03.aux
 A level-1 auxiliary file: chap04.aux
+A level-1 auxiliary file: futur_work.aux
 A level-1 auxiliary file: epilog.aux
 A level-1 auxiliary file: bibliography.aux
 The style file: alpha.bst
 Database file #1: bibliography.bib
 Warning--empty journal in magnusson09
-You've used 20 entries,
+You've used 26 entries,
             2543 wiz_defined-function locations,
-            711 strings with 8587 characters,
-and the built_in function-call counts, 10366 in all, are:
-= -- 1060
-> -- 475
-< -- 13
-+ -- 177
-- -- 170
-* -- 776
-:= -- 1592
-add.period$ -- 63
-call.type$ -- 20
-change.case$ -- 139
-chr.to.int$ -- 18
-cite$ -- 21
-duplicate$ -- 406
-empty$ -- 755
-format.name$ -- 191
-if$ -- 2201
-int.to.chr$ -- 3
+            740 strings with 9577 characters,
+and the built_in function-call counts, 13190 in all, are:
+= -- 1329
+> -- 660
+< -- 14
++ -- 247
+- -- 238
+* -- 991
+:= -- 2066
+add.period$ -- 82
+call.type$ -- 26
+change.case$ -- 187
+chr.to.int$ -- 23
+cite$ -- 27
+duplicate$ -- 509
+empty$ -- 944
+format.name$ -- 262
+if$ -- 2777
+int.to.chr$ -- 4
 int.to.str$ -- 0
-missing$ -- 20
-newline$ -- 104
-num.names$ -- 60
-pop$ -- 129
+missing$ -- 25
+newline$ -- 134
+num.names$ -- 78
+pop$ -- 188
 preamble$ -- 1
-purify$ -- 159
+purify$ -- 213
 quote$ -- 0
-skip$ -- 374
+skip$ -- 453
 stack$ -- 0
-substring$ -- 753
-swap$ -- 126
-text.length$ -- 13
+substring$ -- 851
+swap$ -- 145
+text.length$ -- 14
 text.prefix$ -- 3
 top$ -- 0
-type$ -- 160
+type$ -- 208
 warning$ -- 1
-while$ -- 95
-width$ -- 23
-write$ -- 265
+while$ -- 117
+width$ -- 31
+write$ -- 342
 (There was 1 warning)

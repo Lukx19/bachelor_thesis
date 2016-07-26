@@ -1,32 +1,35 @@
 \relax 
+\providecommand{\transparent@use}[1]{}
 \providecommand\hyper@newdestlabel[2]{}
 \citation{MITDataset}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Comparison to SLAM implementation in ROS}{29}{chapter.5}}
+\citation{gmapping}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Evaluation of NDT graph based SLAM}{32}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}MIT dataset details}{29}{section.5.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces The \gls {NDT} map generated out of selected datasets with use of ground truth odometry information.}}{30}{figure.5.1}}
-\newlabel{fig:ground_truth}{{5.1}{30}{The \gls {NDT} map generated out of selected datasets with use of ground truth odometry information}{figure.5.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}ROS SLAM algorithm overview}{30}{section.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Gmapping}{30}{subsection.5.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Hector}{30}{subsection.5.2.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}NDT-GraphSLAM}{30}{section.5.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}NDT frame generation frequency}{30}{subsection.5.3.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison of effect of different frequency of frame creation. From left pictures of 1m, 2m and 4 meter distance between frames. Red arrows represent odometry edges, green edges are loop closure edges, white dost represent final map representation in form of point cloud of means}}{31}{figure.5.2}}
-\newlabel{fig:frame_freq}{{5.2}{31}{Comparison of effect of different frequency of frame creation. From left pictures of 1m, 2m and 4 meter distance between frames. Red arrows represent odometry edges, green edges are loop closure edges, white dost represent final map representation in form of point cloud of means}{figure.5.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Number of correct and incorrect registrations in score groups}}{32}{figure.5.3}}
-\newlabel{fig:robust_matcher_res}{{5.3}{32}{Number of correct and incorrect registrations in score groups}{figure.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Robust D2D score threshold}{32}{subsection.5.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Iterative mapping of room}{32}{subsection.5.3.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Map of the room mapped by our NDT aproach, hector mapper and gmapping. Visualization of our aproach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.}}{33}{figure.5.4}}
-\newlabel{fig:room_res}{{5.4}{33}{Map of the room mapped by our NDT aproach, hector mapper and gmapping. Visualization of our aproach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution}{figure.5.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.4}Long corridors}{34}{subsection.5.3.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Map of the corridors mapped by our \gls {NDT} approach, hector mapper and gmapping. Visualization of our approach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.}}{35}{figure.5.5}}
-\newlabel{fig:full_res}{{5.5}{35}{Map of the corridors mapped by our \gls {NDT} approach, hector mapper and gmapping. Visualization of our approach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution}{figure.5.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Top picture shows portion of map with corridor when incremental scan matcher may use initial guess from odometry. Bottom picture shows ambiguous registration in corridor area.}}{36}{figure.5.6}}
-\newlabel{fig:corridor}{{5.6}{36}{Top picture shows portion of map with corridor when incremental scan matcher may use initial guess from odometry. Bottom picture shows ambiguous registration in corridor area}{figure.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}MIT dataset details}{32}{section.5.1}}
+\citation{Hector}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces The \gls {NDT} map generated out of selected datasets with use of ground truth odometry information.\relax }}{33}{figure.caption.12}}
+\newlabel{fig:ground_truth}{{5.1}{33}{The \gls {NDT} map generated out of selected datasets with use of ground truth odometry information.\relax }{figure.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}ROS SLAM algorithm overview}{33}{section.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}The Gmapping}{33}{subsection.5.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}The Hector SLAM}{33}{subsection.5.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}NDT-GraphSLAM evaluation}{34}{section.5.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}NDT frame generation frequency}{34}{subsection.5.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison of effect of different frequency of frame creation. From left pictures of 1m, 2m and 4 meter distance between frames. Red arrows represent odometry edges, green edges are loop closure edges, white dots represent point cloud of means from each cell.\relax }}{35}{figure.caption.13}}
+\newlabel{fig:frame_freq}{{5.2}{35}{Comparison of effect of different frequency of frame creation. From left pictures of 1m, 2m and 4 meter distance between frames. Red arrows represent odometry edges, green edges are loop closure edges, white dots represent point cloud of means from each cell.\relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Robust D2D score threshold}{35}{subsection.5.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Number of correct and incorrect registrations in score groups\relax }}{36}{figure.caption.14}}
+\newlabel{fig:robust_matcher_res}{{5.3}{36}{Number of correct and incorrect registrations in score groups\relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Iterative mapping of room}{36}{subsection.5.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Map of the room mapped by our NDT aproach, Hector mapper and Gmapping. Visualization of our aproach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.\relax }}{37}{figure.caption.15}}
+\newlabel{fig:room_res}{{5.4}{37}{Map of the room mapped by our NDT aproach, Hector mapper and Gmapping. Visualization of our aproach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.\relax }{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.4}Long corridors}{38}{subsection.5.3.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Map of the corridors mapped by our \gls {NDT} approach, hector mapper and Gmapping. Visualization of our approach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.\relax }}{39}{figure.caption.16}}
+\newlabel{fig:full_res}{{5.5}{39}{Map of the corridors mapped by our \gls {NDT} approach, hector mapper and Gmapping. Visualization of our approach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.\relax }{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Top picture shows portion of map with corridor when incremental scan matcher may use initial guess from odometry. Bottom picture shows ambiguous registration in corridor area.\relax }}{40}{figure.caption.17}}
+\newlabel{fig:corridor}{{5.6}{40}{Top picture shows portion of map with corridor when incremental scan matcher may use initial guess from odometry. Bottom picture shows ambiguous registration in corridor area.\relax }{figure.caption.17}{}}
 \@setckpt{chap04}{
-\setcounter{page}{37}
+\setcounter{page}{41}
 \setcounter{equation}{0}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
@@ -46,7 +49,7 @@
 \setcounter{parentequation}{0}
 \setcounter{FancyVerbLine}{0}
 \setcounter{NAT@ctr}{0}
-\setcounter{@todonotes@numberoftodonotes}{1}
+\setcounter{@todonotes@numberoftodonotes}{2}
 \setcounter{float@type}{8}
 \setcounter{algorithm}{4}
 \setcounter{ALG@line}{12}
@@ -59,9 +62,18 @@
 \setcounter{su@anzahl}{0}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
+\setcounter{ContinuedFloat}{0}
+\setcounter{KVtest}{0}
+\setcounter{subfigure}{0}
+\setcounter{subfigure@save}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{subtable@save}{0}
+\setcounter{lotdepth}{1}
+\setcounter{svgfigure}{0}
 \setcounter{Item}{0}
 \setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{48}
+\setcounter{bookmark@seq@number}{51}
 \setcounter{thm}{0}
 \setcounter{defn}{0}
 \setcounter{section@level}{2}
