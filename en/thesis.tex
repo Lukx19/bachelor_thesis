@@ -59,7 +59,7 @@
 %%% Basic information on the thesis
 
 % Thesis title in English (exactly as in the formal assignment)
-\def\ThesisTitle{Graph-based SLAM on Normal Distributions Transform Occupancy Map}
+\def\ThesisTitle{Graph-based SLAM \\on Normal Distributions Transform\\ Occupancy Map}
 
 % Author of the thesis
 \def\ThesisAuthor{Lukáš Jelínek}
@@ -93,7 +93,7 @@ I acknowlage my colleague Jiri Horner for sharing his knowledge in C++ programmi
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-Recent advances in Normal distributions transform occupancy map (NDT-OM) representation has proven to be a viable option for mapping static and dynamic environment. Scan registration methods using NDT maps offer a fast and reliable way of registering two laser scans.  In this work, we combine 2D NDT mapping and scan matching with the graph-based representation of simultaneous localization and mapping (SLAM) optimization approach. This novel approach to full SLAM problem solution uses NDT mini-maps for partial map storage inside of pose graph's nodes. It also includes fast incremental scan matcher for odometry estimation. The scan matcher makes it possible to create larger mini-maps which offer better loop closure validation. This work also presents a novel robust distribution to distribution (D2D)-NDT scan matching. It is used for loop closure registration and validation of correct matches. The implementation can operate as an online algorithm inside of Robot Operating System (ROS) framework. Algorithm was tested on MIT Stata Center datasets.
+Recent advances in Normal distributions transform occupancy map (NDT-OM) representation have proven to be a viable option for mapping static as well as dynamic environments. Scan registration methods using NDT maps offer a fast and reliable way of registering two laser scans.  In this work, we combine 2D NDT mapping and scan matching with the graph-based representation of simultaneous localization and mapping (SLAM). This novel approach uses NDT mini-maps for partial map storage inside the pose graph nodes. It also includes fast incremental scan matcher for odometry estimation. The scan matcher allows to create larger mini-maps which offer better loop closure validation. This work also presents a novel robust distribution to distribution (D2D)-NDT scan matching. It is used for loop closure registration and validation of correct matches. The implementation can operate as an online algorithm inside the Robot Operating System (ROS) framework. The algorithm was tested on MIT Stata Center datasets.
 }
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
