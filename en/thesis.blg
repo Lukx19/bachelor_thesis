@@ -3,54 +3,56 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: preface.aux
+A level-1 auxiliary file: analysis.aux
 A level-1 auxiliary file: chap01.aux
 A level-1 auxiliary file: chap02.aux
 A level-1 auxiliary file: chap03.aux
 A level-1 auxiliary file: chap04.aux
+A level-1 auxiliary file: futur_work.aux
 A level-1 auxiliary file: epilog.aux
 A level-1 auxiliary file: bibliography.aux
-The style file: plainnat.bst
+The style file: alpha.bst
 Database file #1: bibliography.bib
 Warning--empty journal in magnusson09
-You've used 19 entries,
-            2773 wiz_defined-function locations,
-            751 strings with 9113 characters,
-and the built_in function-call counts, 11042 in all, are:
-= -- 1046
-> -- 546
-< -- 19
-+ -- 186
-- -- 165
-* -- 894
-:= -- 1575
-add.period$ -- 73
-call.type$ -- 19
-change.case$ -- 112
-chr.to.int$ -- 17
-cite$ -- 39
-duplicate$ -- 513
-empty$ -- 914
-format.name$ -- 196
-if$ -- 2425
-int.to.chr$ -- 3
-int.to.str$ -- 1
-missing$ -- 19
-newline$ -- 116
-num.names$ -- 76
-pop$ -- 223
+You've used 26 entries,
+            2543 wiz_defined-function locations,
+            740 strings with 9577 characters,
+and the built_in function-call counts, 13190 in all, are:
+= -- 1329
+> -- 660
+< -- 14
++ -- 247
+- -- 238
+* -- 991
+:= -- 2066
+add.period$ -- 82
+call.type$ -- 26
+change.case$ -- 187
+chr.to.int$ -- 23
+cite$ -- 27
+duplicate$ -- 509
+empty$ -- 944
+format.name$ -- 262
+if$ -- 2777
+int.to.chr$ -- 4
+int.to.str$ -- 0
+missing$ -- 25
+newline$ -- 134
+num.names$ -- 78
+pop$ -- 188
 preamble$ -- 1
-purify$ -- 93
+purify$ -- 213
 quote$ -- 0
-skip$ -- 418
+skip$ -- 453
 stack$ -- 0
-substring$ -- 619
-swap$ -- 138
-text.length$ -- 10
-text.prefix$ -- 0
+substring$ -- 851
+swap$ -- 145
+text.length$ -- 14
+text.prefix$ -- 3
 top$ -- 0
-type$ -- 209
+type$ -- 208
 warning$ -- 1
-while$ -- 94
-width$ -- 0
-write$ -- 282
+while$ -- 117
+width$ -- 31
+write$ -- 342
 (There was 1 warning)

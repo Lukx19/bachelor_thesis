@@ -1,6 +1,20 @@
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces On the left is visualization of occupancy grid. On the right is visualized point cloud of a room.\relax }}{6}{figure.caption.3}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Local and global ambiguities in scan registrations. On the left is local ambiguity. On the right is global ambiguity with two maps. First map is original map without all information about environment. Second map is reality with all features. Registration wrongly associated matching based on information only from first map.\relax }}{7}{figure.caption.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Diagram of graph based SLAM on NDT maps}}{18}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Imiges with alignemt. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.}}{25}{figure.2.2}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Image describing raytracing update. Yellow elipses represent normal distributions. Letter R represent robot position and red line ray tracing line. \gls {RCU} will be applied to the cell marked A. A distribution in cell marked with letter B will get updated as unoccupied. Cell C will stay without any update.\relax }}{15}{figure.caption.5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Image on the left shows look up table before applying smoothing kernel. Image on the right is after application of kernel.\relax }}{19}{figure.caption.6}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram of graph based SLAM on NDT maps\relax }}{21}{figure.caption.7}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Images with alignment. Red dost represent target scan and green dots source scan. The first row shows valid alignment marked with high score. Second row shows two alignments which were rejected by validation.\relax }}{28}{figure.caption.9}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Overview of individual parts of architecture and their relationships.\relax }}{31}{figure.caption.10}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces The \gls {NDT} map generated out of selected datasets with use of ground truth odometry information.\relax }}{34}{figure.caption.11}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison of effect of different frequency of frame creation. From left pictures of 1m, 2m and 4 meter distance between frames. Red arrows represent odometry edges, green edges are loop closure edges, white dots represent point cloud of means from each cell.\relax }}{36}{figure.caption.12}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Number of correct and incorrect registrations in score groups\relax }}{37}{figure.caption.13}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Map of the room mapped by our NDT aproach, Hector mapper and Gmapping. Visualization of our aproach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.\relax }}{38}{figure.caption.14}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Map of the corridors mapped by our \gls {NDT} approach, hector mapper and Gmapping. Visualization of our approach includes visualization of pose graph with red odometric edges and green loop closure edges. White spots represent means of each cell's normal distribution.\relax }}{40}{figure.caption.15}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Top picture shows portion of map with corridor when incremental scan matcher may use initial guess from odometry. Bottom picture shows ambiguous registration in corridor area.\relax }}{41}{figure.caption.16}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

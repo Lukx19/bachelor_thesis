@@ -1,0 +1,47 @@
+\chapter{ndt\_gslam package}
+\label{chap:ndt_gslam_package}
+\section{Overview}
+This package is used for simultaneous localization and mapping (SLAM) of an unknown environment. It creates a 2D map of the environment. This package is possible to use with or without information from odometry. This algorithm includes fast incremental scan matcher for precise odometry estimation. It also uses a graph-based representation of robot motion. It gives an advantage in recovering robot's map and position after significant drift or scan matcher's error. It provides two maps. The first map is from incremental scan matcher.  It represents only the local area around the robot. It may be used for obstacle avoidance. The second map has information about the whole environment. Therefore, it is ideal for planning algorithms.  
+
+\section{Architecture}
+This package includes three major parts. The first part is iterative scan matcher. It uses fast registration based on D2D-NDT alignment process. It can register incoming scans up to 70 Hz. The second part is pose graph holding small mini-maps inside the nodes. Edges represent relative transformation between two nodes. The graph also includes loop closure edges. These edges are created by observing the same place in the map from two different nodes. These loop edges can correct the map by using g2o graph optimization library.
+
+\section{Parameter specification}
+It is important to set up parameters correctly, to get maximum out of this package. The first parameter is a size of scan matching map. This parameter should be set based on a range of laser scanner.  Window size parameter can be used for limiting the maximal range of laser scanner. 
+
+The second important parameter is a radius of search. This parameter sets how many nodes in surroundings of the last node will be checked for potential loop closure.  Large radius will increase usage of computational resources.  
+
+The third parameter is a minimal distance for loop closure detection. It is calculated by going backwards over odometry edges in the graph.  This process concatenates traveled distance on each edge. Resulting distance is checked against this parameter. If it is bellow, the limit node is not checked for loop closures. The idea behind this is that it is not necessary to check last couple nodes in the graph because they would not introduce any new information.
+\newpage
+\section {ROS API}
+\label{sec:ros_api}
+\subsubsection{Subscribed Topics}
+  \ROStopic{scan}{sensor\_msgs::LaserScan}{Laser measurements.}
+  \ROStopic{odom}{nav\_msgs::Odometry}{Robot's odometry information. Used if selected \texttt{subscribe\_mode} == \texttt{ODOM}.}
+  \ROStopic{pose}{geometry\_msgs::PoseWithCovarianceStamped}{Robot's pose estimation. Used if selected  \texttt{subscribe\_mode} == \texttt{POSE}.}
+
+\subsubsection{Published Topics}
+  \ROStopic{map}{nav\_msgs/OccupancyGrid}{Map of the environment.}
+  \ROStopic{graph}{visualization\_msgs::MarkerArray}{Visualization of pose graph.}
+  \ROStopic{win\_ndt}{ndt\_gslam::NDTMapMsg}{Incremental scan matchers map.}
+  \ROStopic{map\_pcl}{pcl::PointCloud<pcl::PointXYZ>}{Point cloud of the map with points representing mean values from NDT cells.}
+  \ROStopic{win\_pcl}{pcl::PointCloud<pcl::PointXYZ>}{Point cloud of the scan matchers map with points representing mean values from NDT cells.}
+  
+
+\subsubsection{Parameters}
+	\ROSparam{robot\_base\_frame\_id}{base\_link}{string}{robot's base frame name in tf tree.}
+	\ROSparam{odom\_frame\_id}{odom}{string}{tf frame provided by odometry system.}
+	\ROSparam{map\_frame\_id}{map}{string}{frame id used in published maps. Algorithm creates tf transformation between \texttt{odom\_frame\_id} and \texttt{fixed\_frame\_id}.}
+	\ROSparam{subscribe\_mode}{NON}{string}{three posible options are \texttt{NON}, \texttt{ODOM} and \texttt{POSE}. Based on selection of mode this node subscribes to correct topic. \texttt{NON} will not subscribe to any topic. \texttt{ODOM} will subscribe to \texttt{odom} and received odometry will be used in incremental scan matching. \texttt{POSE} will subscribe to \texttt{pose} and use pose estimate for incremental scan matching.}
+    \ROSparam{scanmatch\_window\_radius}{40}{double}{radius of incremental scan-matcher's map. Should be in meters.}
+    \ROSparam{node\_gen\_distance}{2}{double}{euclidean distance between two consecutive nodes in the pose graph.}
+    \ROSparam{loop\_max\_distance}{30}{double}{maximal search radius for loop closure edges detection. Higher values are computationally more demanding, but can recover map from bigger errors. Should be in meters.}
+	\ROSparam{loop\_min\_distance}{14}{double}{selects how many meters from current node may not be detected any loop closure. Distance is measured by concatenation of previous odometry edges' transformations. Example: if selected default \texttt{node\_gen\_distance} than last 8 nodes in graph will not be tested for loop closures.}
+	\ROSparam{loop\_score\_threshold}{0.6}{double}{loop closure rejection threshold. All potential loop closure edges with higher score than selected will be inserted into the pose graph. Value should be in range [0,1].}
+	\ROSparam{serialize\_graph}{true}{bool}{turn on or off publishing of the pose graph visualization.}
+
+\subsubsection{Required tf Transforms}
+  \ROStransform{laser\_frame}{robot\_base\_frame}{This transformation is used for transforming laser scans to robot coordinate frame.}
+  \ROStransform{robot\_base\_frame}{odom\_frame}{This transformation is necessary for correct calculation of provided tf transform. It is usually provided by odometry system.}
+\subsubsection{Provided tf Transform}
+  \ROStransform{map\_frame}{odom\_frame}{Transformation localizing robot inside of calculated map.}

@@ -1,81 +1,72 @@
 \relax 
+\providecommand{\transparent@use}[1]{}
 \providecommand\hyper@newdestlabel[2]{}
-\citation{EKF}
-\citation{FastSlam}
-\citation{Rao-PF}
-\@writefile{toc}{\contentsline {chapter}{\numberline {1}Used algorithms and key concepts}{4}{chapter.1}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Used algorithms and key concepts}{10}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1.1}SLAM problem definition}{4}{section.1.1}}
-\newlabel{sec:SLAM_def}{{1.1}{4}{SLAM problem definition}{section.1.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}SLAM categories}{4}{subsection.1.1.1}}
-\citation{LuMilios}
-\citation{OlsonGS}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.2}Graph-based SLAM}{5}{subsection.1.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.3}Pose graph creation}{5}{subsection.1.1.3}}
-\newlabel{Pose_graph_creation}{{1.1.3}{5}{Pose graph creation}{subsection.1.1.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Graph-based SLAM}{10}{section.2.1}}
+\newlabel{sec:graph_base_slam}{{2.1}{10}{Graph-based SLAM}{section.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Pose graph creation}{10}{subsection.2.1.1}}
+\newlabel{Pose_graph_creation}{{2.1.1}{10}{Pose graph creation}{subsection.2.1.1}{}}
 \citation{Olson2009Loop}
 \citation{Olson2009Loop}
 \citation{RobustOpt}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.4}Loop closure creation}{6}{subsection.1.1.4}}
-\newlabel{subsec:loop_closure_creation}{{1.1.4}{6}{Loop closure creation}{subsection.1.1.4}{}}
-\newlabel{eq:concat_trans}{{1.4}{6}{Loop closure creation}{equation.1.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Loop closure creation}{11}{subsection.2.1.2}}
+\newlabel{subsec:loop_closure_creation}{{2.1.2}{11}{Loop closure creation}{subsection.2.1.2}{}}
+\newlabel{eq:concat_trans}{{2.3}{11}{Loop closure creation}{equation.2.1.3}{}}
 \citation{GraphTutorial}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.5}Optimization}{7}{subsection.1.1.5}}
-\citation{Saarinen13}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Map representation}{8}{section.1.2}}
-\newlabel{MAP_REPRE}{{1.2}{8}{Map representation}{section.1.2}{}}
-\@writefile{tdo}{\contentsline {todo}{picture of occupancy grid, pointcloud ndt grid}{8}{section*.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}Optimization}{12}{subsection.2.1.3}}
 \citation{Biber03}
 \citation{Saarinen13}
 \citation{Saarinen13}
 \citation{Saarinen213}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}NDT grid}{9}{subsection.1.2.1}}
-\newlabel{subsec:NDT_grid}{{1.2.1}{9}{NDT grid}{subsection.1.2.1}{}}
-\newlabel{NDT_mean_RCU}{{1.12}{9}{NDT grid}{equation.1.2.12}{}}
-\newlabel{NDT_covar_RCU}{{1.15}{9}{NDT grid}{equation.1.2.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}NDT mapping algorithms}{13}{section.2.2}}
+\newlabel{sec:map_alg}{{2.2}{13}{NDT mapping algorithms}{section.2.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}NDT grid}{13}{subsection.2.2.1}}
+\newlabel{subsec:NDT_grid}{{2.2.1}{13}{NDT grid}{subsection.2.2.1}{}}
+\newlabel{NDT_mean_RCU}{{2.11}{13}{NDT grid}{equation.2.2.11}{}}
+\newlabel{NDT_covar_RCU}{{2.14}{13}{NDT grid}{equation.2.2.14}{}}
 \citation{Saarinen13}
 \citation{Saarinen213}
 \citation{Saarinen213}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}NDT-OM extension}{10}{subsection.1.2.2}}
-\@writefile{tdo}{\contentsline {todo}{pridat obrazok rautracingu}{10}{section*.5}}
-\newlabel{Pic_coridor}{{1.3}{11}{Scan registration}{section.1.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.3}Scan registration}{11}{section.1.3}}
-\newlabel{Scan_reg}{{1.3}{11}{Scan registration}{section.1.3}{}}
-\@writefile{tdo}{\contentsline {todo}{picture of corridor}{11}{section*.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}NDT-OM extension}{14}{subsection.2.2.2}}
+\newlabel{subsec:NDT_OM}{{2.2.2}{14}{NDT-OM extension}{subsection.2.2.2}{}}
 \citation{Biber03}
 \citation{magnusson09}
 \citation{Biber03}
 \citation{ulas20113d}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}NDT registration}{12}{subsection.1.3.1}}
-\newlabel{subsec:P2D_NDT}{{1.3.1}{12}{NDT registration}{subsection.1.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Image describing raytracing update. Yellow elipses represent normal distributions. Letter R represent robot position and red line ray tracing line. \gls {RCU} will be applied to the cell marked A. A distribution in cell marked with letter B will get updated as unoccupied. Cell C will stay without any update.\relax }}{15}{figure.caption.5}}
+\newlabel{fig:raytrace}{{2.1}{15}{Image describing raytracing update. Yellow elipses represent normal distributions. Letter R represent robot position and red line ray tracing line. \gls {RCU} will be applied to the cell marked A. A distribution in cell marked with letter B will get updated as unoccupied. Cell C will stay without any update.\relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Registration algorithms}{15}{section.2.3}}
+\newlabel{sec:reg_alg}{{2.3}{15}{Registration algorithms}{section.2.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}NDT registration}{15}{subsection.2.3.1}}
+\newlabel{subsec:P2D_NDT}{{2.3.1}{15}{NDT registration}{subsection.2.3.1}{}}
 \citation{magnusson09}
-\newlabel{alg:p2d_ndt}{{1.3.1}{13}{NDT registration}{equation.1.3.19}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces \gls {NDT} algortihms with muilti layer and linked cell enhancements}}{13}{algorithm.1}}
-\newlabel{alg:p2d_ndt_single}{{1.3.1}{13}{NDT registration}{algorithm.1}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Computing transformation on with single target \gls {NDT} grid and source point cloud}}{13}{algorithm.2}}
 \citation{Stoyanov01102012}
+\newlabel{alg:p2d_ndt}{{\caption@xref {alg:p2d_ndt}{ on input line 198}}{16}{NDT registration}{equation.2.3.18}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces \gls {NDT} algortihms with muilti layer and linked cell enhancements\relax }}{16}{algorithm.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}D2D-NDT registration}{16}{subsection.2.3.2}}
+\newlabel{subsec:D2D_NDT}{{2.3.2}{16}{D2D-NDT registration}{subsection.2.3.2}{}}
+\newlabel{eq:D2D_2}{{2.20}{16}{D2D-NDT registration}{equation.2.3.20}{}}
 \citation{Stoyanov01102012}
 \citation{NDTcomparative}
+\newlabel{alg:p2d_ndt_single}{{\caption@xref {alg:p2d_ndt_single}{ on input line 215}}{17}{NDT registration}{algorithm.1}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Computing transformation on with single target \gls {NDT} grid and source point cloud\relax }}{17}{algorithm.2}}
 \citation{chen92ICP}
 \citation{pomerleau2013comparing}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}D2D-NDT registration}{14}{subsection.1.3.2}}
-\newlabel{subsec:D2D_NDT}{{1.3.2}{14}{D2D-NDT registration}{subsection.1.3.2}{}}
-\newlabel{eq:D2D_2}{{1.21}{14}{D2D-NDT registration}{equation.1.3.21}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}ICP}{14}{subsection.1.3.3}}
-\newlabel{subsec:ICP}{{1.3.3}{14}{ICP}{subsection.1.3.3}{}}
 \citation{olson2009real}
 \citation{olson2009real}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.4}Correlative scan registration}{15}{subsection.1.3.4}}
-\newlabel{subsec:Corr}{{1.3.4}{15}{Correlative scan registration}{subsection.1.3.4}{}}
-\newlabel{eq:smooth_kernel}{{1.22}{15}{Correlative scan registration}{equation.1.3.22}{}}
-\@writefile{tdo}{\contentsline {todo}{figure smoothing or remove}{15}{section*.7}}
-\citation{NDTOMFusion}
-\@writefile{toc}{\contentsline {section}{\numberline {1.4}NDT graph based SLAM motivation}{16}{section.1.4}}
-\newlabel{subsec:analyses}{{1.4}{16}{NDT graph based SLAM motivation}{section.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}ICP}{18}{subsection.2.3.3}}
+\newlabel{subsec:ICP}{{2.3.3}{18}{ICP}{subsection.2.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.4}Correlative scan registration}{18}{subsection.2.3.4}}
+\newlabel{subsec:Corr}{{2.3.4}{18}{Correlative scan registration}{subsection.2.3.4}{}}
+\newlabel{eq:smooth_kernel}{{2.21}{18}{Correlative scan registration}{equation.2.3.21}{}}
+\newlabel{fig:kernel}{{\caption@xref {fig:kernel}{ on input line 293}}{19}{Correlative scan registration}{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Image on the left shows look up table before applying smoothing kernel. Image on the right is after application of kernel.\relax }}{19}{figure.caption.6}}
+\newlabel{fig:raytrace}{{2.2}{19}{Image on the left shows look up table before applying smoothing kernel. Image on the right is after application of kernel.\relax }{figure.caption.6}{}}
 \@setckpt{chap01}{
-\setcounter{page}{17}
-\setcounter{equation}{23}
+\setcounter{page}{20}
+\setcounter{equation}{22}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
@@ -83,18 +74,18 @@
 \setcounter{footnote}{0}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
-\setcounter{chapter}{1}
-\setcounter{section}{4}
-\setcounter{subsection}{0}
+\setcounter{chapter}{2}
+\setcounter{section}{3}
+\setcounter{subsection}{4}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{0}
+\setcounter{figure}{2}
 \setcounter{table}{0}
 \setcounter{parentequation}{0}
 \setcounter{FancyVerbLine}{0}
 \setcounter{NAT@ctr}{0}
-\setcounter{@todonotes@numberoftodonotes}{5}
+\setcounter{@todonotes@numberoftodonotes}{0}
 \setcounter{float@type}{8}
 \setcounter{algorithm}{2}
 \setcounter{ALG@line}{17}
@@ -107,10 +98,22 @@
 \setcounter{su@anzahl}{0}
 \setcounter{LT@tables}{0}
 \setcounter{LT@chunks}{0}
+\setcounter{ContinuedFloat}{0}
+\setcounter{KVtest}{0}
+\setcounter{subfigure}{0}
+\setcounter{subfigure@save}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{subtable@save}{0}
+\setcounter{lotdepth}{1}
+\setcounter{svgfigure}{0}
+\setcounter{@pps}{0}
+\setcounter{@ppsavesec}{0}
+\setcounter{@ppsaveapp}{0}
 \setcounter{Item}{0}
-\setcounter{Hfootnote}{0}
-\setcounter{bookmark@seq@number}{17}
+\setcounter{Hfootnote}{1}
+\setcounter{bookmark@seq@number}{20}
 \setcounter{thm}{0}
 \setcounter{defn}{0}
-\setcounter{section@level}{1}
+\setcounter{section@level}{2}
 }
